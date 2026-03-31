@@ -15,6 +15,34 @@ body {
   line-height: 1.7;
 }
 
+/* Arabic mode */
+body.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+body.rtl .navbar,
+body.rtl .hero,
+body.rtl .story-grid,
+body.rtl .education-side-card,
+body.rtl .projects-grid,
+body.rtl .gwu-start-box {
+  direction: rtl;
+}
+
+body.rtl .hero-buttons,
+body.rtl .nav-links {
+  flex-direction: row-reverse;
+}
+
+body.rtl .logo {
+  order: 3;
+}
+
+body.rtl .language-switch {
+  order: 1;
+}
+
 /* Banner */
 .top-banner {
   width: 100%;
@@ -59,6 +87,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .logo {
@@ -67,6 +96,7 @@ body {
   font-size: 34px;
   font-weight: 800;
   letter-spacing: -0.03em;
+  white-space: nowrap;
 }
 
 .logo span {
@@ -77,6 +107,7 @@ body {
   list-style: none;
   display: flex;
   gap: 28px;
+  align-items: center;
 }
 
 .nav-links a {
@@ -87,6 +118,22 @@ body {
 }
 
 .nav-links a:hover {
+  color: #facc15;
+}
+
+.language-switch button {
+  background: transparent;
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.language-switch button:hover {
+  border-color: rgba(250, 204, 21, 0.45);
   color: #facc15;
 }
 
@@ -220,7 +267,8 @@ body {
 .contact-card,
 .project-card,
 .recognition-card,
-.story-photo-card {
+.story-photo-card,
+.skill-card {
   background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 24px;
@@ -367,6 +415,37 @@ body {
 .gwu-start-box p {
   margin-bottom: 0;
   color: #d1d5db;
+}
+
+/* Skills */
+.skills-bars {
+  max-width: 760px;
+}
+
+.skill {
+  margin-bottom: 20px;
+}
+
+.skill span {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.bar {
+  width: 100%;
+  height: 10px;
+  background: #1f2937;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, #facc15, #eab308);
+  border-radius: 10px;
+  transition: width 1s ease;
 }
 
 /* Projects */
@@ -582,45 +661,4 @@ body {
   .education-image-wrap img {
     height: 220px;
   }
-}
-@media (max-width: 900px) {
-  .skills-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 600px) {
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-}
-/* Skills Bars */
-.skills-bars {
-  max-width: 700px;
-}
-
-.skill {
-  margin-bottom: 20px;
-}
-
-.skill span {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-  color: #e5e7eb;
-}
-
-.bar {
-  width: 100%;
-  height: 10px;
-  background: #1f2937;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.fill {
-  height: 100%;
-  background: linear-gradient(90deg, #facc15, #eab308);
-  border-radius: 10px;
-  transition: width 1s ease;
 }
