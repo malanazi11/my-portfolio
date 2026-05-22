@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meshari Naif Alanazi – Resume</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 0.42in 0.52in;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', 'Helvetica Neue', sans-serif;
+      font-size: 9.6pt;
+      color: #111;
+      line-height: 1.38;
+      background: #fff;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 7px;
+      border-bottom: 2px solid #111;
+      padding-bottom: 7px;
+    }
+
+    .header h1 {
+      font-size: 17pt;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .contact-line {
+      font-size: 8.6pt;
+      color: #333;
+      margin-top: 3px;
+    }
+
+    .contact-line a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 7px;
+    }
+
+    .section-title {
+      font-size: 9pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid #111;
+      padding-bottom: 2px;
+      margin-bottom: 5px;
+    }
+
+    /* ── Experience rows ── */
+    .entry {
+      margin-bottom: 6px;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .entry-org {
+      font-weight: 700;
+      font-size: 9.6pt;
+    }
+
+    .entry-date {
+      font-size: 8.8pt;
+      color: #333;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    .entry-role {
+      font-style: italic;
+      font-size: 9pt;
+      color: #333;
+      margin-bottom: 2px;
+    }
+
+    .entry ul {
+      margin-left: 13px;
+    }
+
+    .entry li {
+      margin-bottom: 1px;
+    }
+
+    /* ── Skills ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 2px 8px;
+    }
+
+    .skill-cat {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* ── Awards ── */
+    .award-item {
+      margin-bottom: 3px;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .award-item::before {
+      content: "·";
+      position: absolute;
+      left: 2px;
+    }
+
+    /* ── Summary ── */
+    .summary-text {
+      font-size: 9.4pt;
+      line-height: 1.42;
+    }
+
+    /* ── Education ── */
+    .edu-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 3px;
+    }
+
+    .edu-left .edu-school {
+      font-weight: 700;
+    }
+
+    .edu-left .edu-degree {
+      font-style: italic;
+      font-size: 9pt;
+      color: #333;
+    }
+
+    .edu-date {
+      font-size: 8.8pt;
+      color: #333;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+
+    /* ── Languages ── */
+    .languages-line {
+      font-size: 9.4pt;
+    }
+
+    /* ── Print safety ── */
+    @media print {
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      a { color: #111; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Meshari Naif Alanazi</h1>
+    <div class="contact-line">
+      malanazi304@gmail.com &nbsp;|&nbsp;
+      +1 (202) 908-9786 &nbsp;|&nbsp;
+      Tysons, VA &nbsp;|&nbsp;
+      <a href="https://linkedin.com/in/meshari-naif-45693b279">linkedin.com/in/meshari-naif-45693b279</a> &nbsp;|&nbsp;
+      <a href="https://github.com/malanazi11">github.com/malanazi11</a>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="section-title">Summary</div>
+    <p class="summary-text">
+      Computer Science graduate from George Washington University (May 2026), currently working as Junior Product Specialist at Unstuck Labs.
+      Experience building secure mobile applications, AI/IoT monitoring systems, and leading cross-functional collaboration in Agile environments.
+      Skilled in backend development, cybersecurity fundamentals, and product-focused engineering.
+    </p>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-org">Unstuck Labs</span>
+        <span class="entry-date">April 2026 – Present</span>
+      </div>
+      <div class="entry-role">Junior Product Specialist · Washington, DC</div>
+      <ul>
+        <li>Contributing to AI-focused product development within a fast-paced startup environment.</li>
+        <li>Collaborating with a small cross-functional team on product features and user experience improvements.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-org">LoCAS – GWU Senior Capstone &nbsp;(Pelton Award, 3rd Place)</span>
+        <span class="entry-date">Aug 2025 – May 2026</span>
+      </div>
+      <div class="entry-role">Developer · George Washington University, Washington, DC</div>
+      <ul>
+        <li>Built a web-based platform for real-time greenhouse monitoring using IoT sensors and environmental data.</li>
+        <li>Integrated temperature, humidity, and sensor feeds; developed frontend features for usability.</li>
+        <li>Placed 3rd at the GWU Pelton Senior Design Competition (May 2026), awarded by Dean Jason M. Zara.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-org">Albilad Bank (Saudi Arabia)</span>
+        <span class="entry-date">Nov 2024 – Jan 2025</span>
+      </div>
+      <div class="entry-role">Security Application Developer Intern · Riyadh, Saudi Arabia</div>
+      <ul>
+        <li>Developed a secure Android banking app using Java, Firebase, and REST APIs with 2FA and data encryption.</li>
+        <li>Collaborated with security teams to meet cybersecurity standards; participated in Agile sprints.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-org">Saudi Cultural Mission (SACM)</span>
+        <span class="entry-date">Feb 2023 – May 2025</span>
+      </div>
+      <div class="entry-role">Program &amp; Administrative Assistant · Washington, DC</div>
+      <ul>
+        <li>Assisted program managers with event planning, coordination, and documentation.</li>
+        <li>Managed office operations including phone inquiries, document scanning, and records organization.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-header">
+        <span class="entry-org">Saudi Embassy Washington DC – Passport DC</span>
+        <span class="entry-date">May 2022 – May 2026</span>
+      </div>
+      <div class="entry-role">Volunteer · Washington, DC</div>
+      <ul>
+        <li>Volunteered at embassy cultural and community events supporting Saudi nationals and visitors.</li>
+        <li>Recognized by H.R.H. Ambassador Reema bint Bandar Al Saud for outstanding volunteer contributions.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+
+    <div class="edu-entry">
+      <div class="edu-left">
+        <div class="edu-school">George Washington University · Washington, DC</div>
+        <div class="edu-degree">Bachelor of Science in Computer Science</div>
+      </div>
+      <span class="edu-date">May 2026</span>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-left">
+        <div class="edu-school">King Abdullah Academy · Herndon, VA</div>
+        <div class="edu-degree">High School Diploma</div>
+      </div>
+      <span class="edu-date">Jun 2021</span>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section">
+    <div class="section-title">Skills</div>
+    <div class="skills-grid">
+      <span class="skill-cat">Languages:</span>
+      <span>Java · Python · SQL · HTML/CSS</span>
+      <span class="skill-cat">Tools &amp; Platforms:</span>
+      <span>Git · GitHub · Firebase · Android Studio · VS Code · REST APIs</span>
+      <span class="skill-cat">Core CS:</span>
+      <span>OOP · Data Structures · Algorithms · 2FA · Data Encryption · API Integration</span>
+      <span class="skill-cat">Practices:</span>
+      <span>Agile Development · Software Testing · Problem Solving · Technical Documentation</span>
+    </div>
+  </div>
+
+  <!-- AWARDS -->
+  <div class="section">
+    <div class="section-title">Awards &amp; Recognition</div>
+    <div class="award-item">
+      <strong>3rd Place – Pelton Senior Design Competition</strong>, GWU School of Engineering &amp; Applied Science (May 2026) — LoCAS project, awarded by Dean Jason M. Zara.
+    </div>
+    <div class="award-item">
+      <strong>Volunteer Recognition – Passport DC</strong>, Saudi Embassy Washington DC (2022–2026) — recognized by H.R.H. Ambassador Reema bint Bandar Al Saud for outstanding multi-year contributions.
+    </div>
+    <div class="award-item">
+      <strong>Certificate of Appreciation</strong>, Saudi Cultural Mission (SACM) — contributions to Saudi National Day and Founding Day cultural events.
+    </div>
+    <div class="award-item">
+      <strong>Cultural Agreement Recognition</strong>, Saudi Cultural Office — awarded by Dr. Fawzi Bukhari for community engagement and cultural programs.
+    </div>
+  </div>
+
+  <!-- LANGUAGES -->
+  <div class="section">
+    <div class="section-title">Languages</div>
+    <p class="languages-line">Arabic (Native) &nbsp;·&nbsp; English (Professional)</p>
+  </div>
+
+</body>
+</html>

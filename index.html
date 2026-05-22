@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meshari Naif | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <nav class="navbar">
+      <a href="#home" class="logo">Meshari<span>.</span></a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" id="navHome">Home</a></li>
+        <li><a href="#story" id="navStory">My Story</a></li>
+        <li><a href="#education" id="navEducation">Education</a></li>
+        <li><a href="#career" id="navCareer">Career</a></li>
+        <li><a href="#skills" id="navSkills">Skills</a></li>
+        <li><a href="#projects" id="navProjects">Projects</a></li>
+        <li><a href="#recognition" id="navRecognition">Recognition</a></li>
+        <li><a href="#contact" id="navContact">Contact</a></li>
+      </ul>
+
+      <div class="language-switch">
+        <button id="langToggle">AR</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="home" class="section hero">
+      <div class="hero-text">
+        <p class="section-label" id="heroLabel">Computer Science Graduate</p>
+
+        <h1 id="heroTitle">Hi, I'm <span>Meshari Naif</span></h1>
+
+        <p class="hero-description" id="heroDescription">
+          I graduated from George Washington University with a B.S. in Computer Science and I am now working as a
+          Junior Product Specialist at Unstuck Labs. I care about software engineering, building practical products,
+          and technology that makes a real difference.
+        </p>
+
+        <p class="hero-subline" id="heroSubline">
+          B.S. Computer Science, GWU · Junior Product Specialist at Unstuck Labs · Washington, DC
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary" id="viewProjectsBtn">View Projects</a>
+          <a href="files/resume.pdf" target="_blank" class="btn btn-secondary" id="resumeBtn">Download Resume</a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <img src="images/profile.jpg" alt="Meshari Naif profile photo">
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section id="story" class="section reveal">
+      <div class="section-heading">
+        <p class="section-label" id="storyLabel">My Story</p>
+        <h2 id="storyHeading">From Foundation to Growth</h2>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-card">
+          <p id="storyP1">
+            My academic journey began at Mount St. Mary's University, where I built a strong foundation in Computer Science
+            and developed important skills in programming, systems, security, and problem solving.
+          </p>
+
+          <p id="storyP2">
+            During my time there, I studied courses that helped shape my technical background, including Introduction to Computer Science,
+            Computer Security, Operating Systems, Computer Architecture, Data Structures and Algorithms, UNIX and Windows Operating Systems,
+            and Calculus.
+          </p>
+
+          <p id="storyP3">
+            Outside the classroom, I was also active in campus and cultural events. One of the most meaningful experiences was helping
+            represent Saudi National Day. During that experience, I met Dr. Timothy E. Trainor, the president of Mount St. Mary's University,
+            and he was happy to see the event and the way Saudi culture was being represented.
+          </p>
+
+          <p id="storyP4">
+            Later, I transferred to George Washington University to continue my Computer Science degree.
+            That move marked a new chapter in my journey, where I began focusing more deeply on advanced coursework,
+            team-based software development, and real-world technical projects.
+          </p>
+        </div>
+
+        <div class="story-side">
+          <div class="story-photo-card">
+            <img src="images/mount.jpg" alt="Mount St. Mary's University campus">
+            <div class="photo-text">
+              <h3 id="storyCard1Title">Where My Journey Started</h3>
+              <p id="storyCard1Text">
+                Mount St. Mary's University was the place where I began building my academic foundation in Computer Science.
+              </p>
+            </div>
+          </div>
+
+          <div class="story-photo-card">
+            <img src="images/mount-event.jpg" alt="Photo with Dr. Timothy E. Trainor at a Saudi National Day event">
+            <div class="photo-text">
+              <h3 id="storyCard2Title">Representing Saudi National Day</h3>
+              <p id="storyCard2Text">
+                This photo was taken with Dr. Timothy E. Trainor when I was taking part in a Saudi National Day event.
+                It reflects an important part of my journey, where I represented my culture, met the president of the university,
+                and took part in campus life in a meaningful way.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="section reveal">
+      <div class="section-heading">
+        <p class="section-label" id="educationLabel">Education</p>
+        <h2 id="educationHeading">Academic Progress</h2>
+      </div>
+
+      <div class="education-list">
+        <div class="education-card education-side-card">
+          <div class="education-image-wrap">
+            <img src="images/mount.jpg" alt="Mount St. Mary's University campus" class="img-mount">
+          </div>
+
+          <div class="education-body">
+            <p class="date-pill" id="mountDate">2022 – 2024</p>
+            <h3 id="mountTitle">Mount St. Mary's University</h3>
+            <p class="degree" id="mountDegree"><strong>Computer Science Major • Cyber Security Minor</strong></p>
+
+            <p id="mountText1">
+              At Mount St. Mary's, I built my technical foundation through coursework in computing, systems, and security.
+              This was the beginning of my path in Computer Science and an important stage in my academic growth.
+            </p>
+
+            <p id="mountText2">
+              My studies there included courses such as Introduction to Computer Science I and II, Computer Security,
+              Operating Systems, Computer Architecture, Data Structures and Algorithms, and Calculus I.
+            </p>
+
+            <p id="mountText3">
+              It was also a place where I grew personally, became more involved in events, and gained experiences that shaped the way I present myself as both a student and a future professional.
+            </p>
+          </div>
+        </div>
+
+        <div class="education-card education-side-card gwu-combined-card">
+          <div class="education-image-wrap">
+            <img src="images/gwu.jpg" alt="George Washington University campus" class="img-gwu">
+          </div>
+
+          <div class="education-body">
+            <p class="date-pill" id="gwuDate">2025 – May 2026</p>
+            <h3 id="gwuTitle">George Washington University</h3>
+            <p class="degree" id="gwuDegree"><strong>B.S. in Computer Science</strong></p>
+            <p class="career-badge" style="display:inline-flex;margin-bottom:14px;" id="gwuHighlight">Graduated · May 2026</p>
+
+            <p id="gwuText1">
+              After transferring to George Washington University, I completed my B.S. in Computer Science in May 2026.
+              My coursework covered Software Engineering, Algorithms, Systems Programming, Linear Algebra, Database Systems,
+              Machine Learning, Computer Game Design, and a two-semester Capstone Design Project.
+            </p>
+
+            <p id="gwuText2">
+              My senior design project, LoCAS, was entered in the Pelton Senior Design Competition at GWU's School of
+              Engineering and Applied Science, where our team received recognition for the work we built together.
+            </p>
+
+            <div class="grad-highlight">
+              <img class="grad-highlight-img" src="images/grad_image.jpeg" alt="Meshari Naif at GWU graduation ceremony, May 2026">
+              <div class="grad-highlight-text">
+                <h4 id="gwuGradTitle">Graduation · May 2026</h4>
+                <p id="gwuGradText">
+                  Walking across the stage at George Washington University in May 2026 marked an important milestone in my journey.
+                  It reflected years of hard work, transferring schools, completing advanced Computer Science coursework,
+                  and building meaningful projects alongside an incredible team.
+                </p>
+                <p id="gwuGradP2">
+                  I was especially honored and happy that Ambassador Reema bint Bandar Al Saud attended my graduation ceremony,
+                  making the moment even more memorable and meaningful to me and my family.
+                </p>
+                <p id="gwuGradP3">
+                  This photo was taken during the graduation ceremony at GWU in May 2026.
+                </p>
+              </div>
+            </div>
+
+            <div class="gwu-start-box">
+              <img src="images/gwu-id.jpg" alt="George Washington University student ID">
+              <div>
+                <h4 id="gwuStartTitle">Starting at GWU</h4>
+                <p id="gwuStartText">
+                  This photo shows when I received my George Washington University student ID —
+                  the start of a new chapter that ended with graduation two years later.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER -->
+    <section id="career" class="section reveal">
+      <div class="section-heading">
+        <p class="section-label" id="careerLabel">Career</p>
+        <h2 id="careerHeading">Professional Journey</h2>
+      </div>
+
+      <div class="education-list">
+        <div class="education-card education-side-card">
+          <div class="education-image-wrap">
+            <img src="images/unstuck_labs.jfif" alt="Unstuck Labs office" class="img-unstuck">
+          </div>
+
+          <div class="education-body">
+            <p class="date-pill" id="unstuckDate">April 2026 – Present</p>
+            <h3 id="unstuckTitle">Unstuck Labs</h3>
+            <p class="degree" id="unstuckDegree"><strong>Junior Product Specialist</strong></p>
+            <p class="career-badge" style="display:inline-flex;margin-bottom:14px;">Current Role</p>
+
+            <p id="unstuckText1">
+              Started my professional journey at Unstuck Labs as a Junior Product Specialist in April 2026, working in a
+              startup-focused environment centered around innovation, product development, and emerging technologies.
+            </p>
+
+            <p id="unstuckText2">
+              Working within a small and focused team has given me hands-on experience in product thinking, feature development,
+              and the kind of fast-paced collaboration that defines the startup environment. It is my first professional role
+              in tech, and it has already pushed me to grow in meaningful ways.
+            </p>
+
+            <p class="tech-line" id="unstuckTech">Product Development · AI · Startup · Team Collaboration · Washington D.C.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section reveal">
+      <div class="section-heading">
+        <p class="section-label" id="skillsLabel">Skills</p>
+        <h2 id="skillsHeading">Technical Skills</h2>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category">
+          <p class="skill-cat-label">Languages</p>
+          <div class="skill-tags">
+            <span class="skill-tag" id="skillJava">Java</span>
+            <span class="skill-tag" id="skillPython">Python</span>
+            <span class="skill-tag" id="skillJS">JavaScript</span>
+            <span class="skill-tag" id="skillHTML">HTML / CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <p class="skill-cat-label">Tools & Platforms</p>
+          <div class="skill-tags">
+            <span class="skill-tag" id="skillGit">Git & GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <p class="skill-cat-label">Security & Data</p>
+          <div class="skill-tags">
+            <span class="skill-tag" id="skillSecurity">Security & Authentication</span>
+            <span class="skill-tag" id="skillDB">Databases (SQL)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section reveal">
+      <div class="section-heading">
+        <p class="section-label" id="projectsLabel">Projects</p>
+        <h2 id="projectsHeading">Featured Work</h2>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <img src="images/locas-team.jpg" alt="LoCAS team project image">
+
+          <div class="project-content">
+            <h3 id="locasTitle">LoCAS – Greenhouse Monitoring System</h3>
+
+            <p id="locasText1">
+              LoCAS is a team-based greenhouse monitoring project built to help users track environmental conditions in real time.
+              The system is designed to work with sensor data such as temperature and humidity and present that information through a web platform.
+            </p>
+
+            <p id="locasText2">
+              This project was especially meaningful because it was built as a team effort. I worked alongside
+              Nate Dixon, Dylan O'Neill, and Thomas Schmidt, and the project gave me valuable experience
+              in teamwork, communication, task organization, and contributing to a larger software system.
+            </p>
+
+            <p id="locasText3">
+              My contribution focused on improving the web experience, making the system easier to use, and helping organize how information is presented to users.
+              This project helped me better understand real-world software development and building tools around practical needs.
+            </p>
+
+            <p class="tech-line" id="locasTech">Web Development • UI Design • Sensor Data • Team Collaboration • GitHub</p>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <img src="images/bank-app.jpg" alt="Secure mobile banking application image">
+
+          <div class="project-content">
+            <h3 id="bankTitle">Secure Mobile Banking Application</h3>
+
+            <p id="bankText1">
+              This project focused on building a secure mobile banking application with strong attention to privacy, safe access, and user protection.
+              It was designed around the idea that users must be able to trust the system they are using.
+            </p>
+
+            <p id="bankText2">
+              I worked on security-related features such as two-factor authentication, encrypted user data, and backend communication through REST APIs.
+              It gave me direct experience with how software security is applied in real systems, especially in financial technology.
+            </p>
+
+            <p id="bankText3">
+              This project reflects the area I am strongly interested in: building software that is both useful and secure.
+              It strengthened my interest in backend development, secure design, and cybersecurity-focused work.
+            </p>
+
+            <p class="tech-line" id="bankTech">Java • Firebase • REST APIs • Authentication • 2FA • Encryption</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECOGNITION -->
+    <section id="recognition" class="section reveal">
+      <div class="section-heading">
+        <p class="section-label" id="recognitionLabel">Recognition</p>
+        <h2 id="recognitionHeading">Awards & Achievements</h2>
+      </div>
+
+      <div class="recognition-awards-grid">
+
+        <!-- Pelton Senior Design Competition -->
+        <div class="recognition-card recognition-v2">
+          <img class="award-img img-pelton" src="images/Pleton..jpeg" alt="Pelton Senior Design Competition certificate">
+          <div class="recognition-body">
+            <p class="date-pill" id="peltonDate">May 2026</p>
+            <h3 id="peltonTitle">Pelton Senior Design Competition</h3>
+            <p id="peltonText1">
+              Our team received 3rd place recognition at the Pelton Senior Design Competition hosted by the George Washington
+              University School of Engineering &amp; Applied Science for the LoCAS project — a localized AI and IoT monitoring
+              system for smart greenhouses.
+            </p>
+            <p id="peltonText2">
+              The award was presented on May 13, 2026, by Dean Jason M. Zara. I built LoCAS alongside teammates
+              Nate Dixon, Dylan O'Neill, and Thomas Schmidt as part of our senior capstone project.
+            </p>
+          </div>
+        </div>
+
+        <!-- Embassy Recognition -->
+        <div class="recognition-card recognition-v2">
+          <img class="award-img" src="images/certificate.jpg" alt="Embassy recognition certificate">
+          <div class="recognition-body">
+            <p class="date-pill" id="embassyDates">2022 · 2023 · 2024 · 2025 · 2026</p>
+            <h3 id="recognitionTitle">Embassy Recognition – Passport DC</h3>
+            <p id="recognitionText1">
+              This recognition reflects my contribution to community and cultural events and my role in representing Saudi culture
+              in a professional setting. During this experience, I had the honor of meeting <strong>Ambassador Reema bint Bandar Al Saud</strong>.
+            </p>
+            <p id="recognitionText2">
+              I attended and supported the event each year in 2022, 2023, and 2024, and those experiences helped me grow in
+              communication, leadership, responsibility, and public engagement.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section reveal">
+      <div class="section-heading">
+        <p class="section-label" id="contactLabel">Contact</p>
+        <h2 id="contactHeading">Get In Touch</h2>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="contact-icon-badge">ID</span>
+          <div class="contact-detail">
+            <span class="contact-key" id="contactNameLabel">Name:</span>
+            <span class="contact-val" id="contactName">Meshari Naif</span>
+          </div>
+        </div>
+
+        <a href="mailto:malanazi304@gmail.com" class="contact-item contact-item-link">
+          <span class="contact-icon-badge">@</span>
+          <div class="contact-detail">
+            <span class="contact-key" id="contactEmailLabel">Email:</span>
+            <span class="contact-val" id="contactEmail">malanazi304@gmail.com</span>
+          </div>
+        </a>
+
+        <a href="tel:+12029089786" class="contact-item contact-item-link">
+          <span class="contact-icon-badge">US</span>
+          <div class="contact-detail">
+            <span class="contact-key" id="contactUSLabel">US Phone:</span>
+            <span class="contact-val" id="contactUS">+1 202-908-9786</span>
+          </div>
+        </a>
+
+        <a href="tel:+966554176557" class="contact-item contact-item-link">
+          <span class="contact-icon-badge">SA</span>
+          <div class="contact-detail">
+            <span class="contact-key" id="contactSaudiLabel">Saudi Phone:</span>
+            <span class="contact-val" id="contactSaudi">+966554176557</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/malanazi11" target="_blank" rel="noopener" class="contact-item contact-item-link">
+          <span class="contact-icon-badge">GH</span>
+          <div class="contact-detail">
+            <span class="contact-key" id="contactGitHubLabel">GitHub:</span>
+            <span class="contact-val" id="contactGitHub">github.com/malanazi11</span>
+          </div>
+        </a>
+
+        <a href="https://linkedin.com/in/meshari-naif-45693b279" target="_blank" rel="noopener" class="contact-item contact-item-link">
+          <span class="contact-icon-badge">in</span>
+          <div class="contact-detail">
+            <span class="contact-key" id="contactLinkedInLabel">LinkedIn:</span>
+            <span class="contact-val" id="contactLinkedIn">linkedin.com/in/meshari-naif-45693b279</span>
+          </div>
+        </a>
+
+        <div class="contact-item">
+          <span class="contact-icon-badge">DC</span>
+          <div class="contact-detail">
+            <span class="contact-key" id="contactLocationLabel">Location:</span>
+            <span class="contact-val" id="contactLocation">Virginia / Washington, DC</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p id="footerText">© 2026 Meshari Naif. All rights reserved.</p>
+  </footer>
+
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">&#8593;</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

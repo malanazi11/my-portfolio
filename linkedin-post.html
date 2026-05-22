@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Carousel — Meshari Alanazi 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+  /* ─────────────────────────────────────────────
+     TOKENS
+  ───────────────────────────────────────────── */
+  :root {
+    --navy:       #060D1A;
+    --navy-mid:   #0A1628;
+    --navy-light: #0F2040;
+    --blue:       #2563EB;
+    --blue-lt:    #3B82F6;
+    --accent:     #5B9BF8;
+    --accent-glow:rgba(91,155,248,0.35);
+    --gold:       #C8A84B;
+    --gold-lt:    #E5C870;
+    --gold-pale:  rgba(200,168,75,0.12);
+    --gold-border:rgba(200,168,75,0.30);
+    --white:      #FFFFFF;
+    --white-90:   rgba(255,255,255,0.90);
+    --white-70:   rgba(255,255,255,0.70);
+    --white-45:   rgba(255,255,255,0.45);
+    --white-20:   rgba(255,255,255,0.20);
+    --white-10:   rgba(255,255,255,0.10);
+    --white-06:   rgba(255,255,255,0.06);
+    --glass-bg:   rgba(255,255,255,0.055);
+    --glass-border:rgba(255,255,255,0.11);
+    --slide-sz:   1080px;
+    --pad:        68px;
+    --radius:     18px;
+  }
+
+  /* ─────────────────────────────────────────────
+     RESET & GLOBAL
+  ───────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #04080F;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--white);
+    padding: 0 0 100px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────────────────────────────────────────
+     PAGE CHROME
+  ───────────────────────────────────────────── */
+  .page-header {
+    padding: 64px 40px 52px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 72px;
+    position: relative;
+  }
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .page-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .page-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+  .page-sub {
+    font-size: 15px;
+    color: var(--white-45);
+    font-weight: 400;
+  }
+
+  /* ─────────────────────────────────────────────
+     CAROUSEL SCAFFOLD
+  ───────────────────────────────────────────── */
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+    padding: 0 20px;
+  }
+
+  .slide-group { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+
+  .slide-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: var(--slide-sz);
+  }
+  .slide-meta .s-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .slide-meta .s-pipe { width: 1px; height: 12px; background: var(--white-20); }
+  .slide-meta .s-name {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--white-45);
+    text-transform: uppercase;
+    flex: 1;
+  }
+  .present-btn {
+    padding: 6px 16px;
+    border-radius: 100px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--white-70);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .present-btn:hover { background: var(--white-10); color: var(--white); }
+
+  /* ─────────────────────────────────────────────
+     SLIDE BASE
+  ───────────────────────────────────────────── */
+  .slide {
+    width: var(--slide-sz);
+    height: var(--slide-sz);
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.06),
+      0 40px 80px rgba(0,0,0,0.6),
+      0 80px 160px rgba(0,0,0,0.4);
+    transition: box-shadow 0.4s ease;
+  }
+  .slide:hover {
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.10),
+      0 50px 100px rgba(0,0,0,0.7),
+      0 100px 200px rgba(0,0,0,0.5);
+  }
+
+  /* Dot-matrix grain overlay on every slide */
+  .slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: 200;
+  }
+
+  /* ─────────────────────────────────────────────
+     KEYFRAME ANIMATIONS
+  ───────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes pulseGold {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(200,168,75,0); }
+    50%       { box-shadow: 0 0 32px 4px rgba(200,168,75,0.25); }
+  }
+  @keyframes pulseBlue {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1; }
+  }
+  @keyframes rotateSlow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes scaleBreath {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.04); }
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.6; }
+    50%       { opacity: 1; }
+  }
+
+  /* Animate-in class (added by IntersectionObserver) */
+  .slide-animate .anim-item {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  .slide-animate.visible .anim-item {
+    animation: fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) forwards;
+  }
+  .slide-animate.visible .anim-item:nth-child(1) { animation-delay: 0.05s; }
+  .slide-animate.visible .anim-item:nth-child(2) { animation-delay: 0.15s; }
+  .slide-animate.visible .anim-item:nth-child(3) { animation-delay: 0.25s; }
+  .slide-animate.visible .anim-item:nth-child(4) { animation-delay: 0.35s; }
+  .slide-animate.visible .anim-item:nth-child(5) { animation-delay: 0.45s; }
+  .slide-animate.visible .anim-item:nth-child(6) { animation-delay: 0.55s; }
+
+  /* ═══════════════════════════════════════════════
+     SLIDE 1 — CINEMATIC HERO
+  ═══════════════════════════════════════════════ */
+  .slide-1 { background: var(--navy); }
+
+  /* Photo: zoom + reposition to focus on Meshari (right side) */
+  .slide-1 .photo-bg {
+    position: absolute;
+    inset: 0;
+    background: url('images/grad_image.jpeg') 72% 8% / 135% auto no-repeat;
+    filter: brightness(0.50) saturate(0.75);
+    transform-origin: center center;
+    transition: transform 8s ease;
+  }
+  .slide-1:hover .photo-bg { transform: scale(1.03); }
+
+  /* Layered gradient system */
+  .slide-1 .overlay-left {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg,
+      rgba(6,13,26,0.97) 0%,
+      rgba(6,13,26,0.82) 42%,
+      rgba(6,13,26,0.28) 65%,
+      rgba(6,13,26,0.60) 100%);
+  }
+  .slide-1 .overlay-bottom {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg,
+      rgba(6,13,26,1.00) 0%,
+      rgba(6,13,26,0.85) 22%,
+      transparent 50%);
+  }
+
+  /* Gold light leak — top right corner, cinematic */
+  .slide-1 .light-leak {
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,168,75,0.18) 0%, transparent 65%);
+    pointer-events: none;
+    animation: glowPulse 6s ease-in-out infinite;
+  }
+
+  /* Blue atmospheric glow — bottom left */
+  .slide-1 .atmos-glow {
+    position: absolute;
+    bottom: -100px; left: -60px;
+    width: 500px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(91,155,248,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  /* Top accent bar: gold shimmer */
+  .slide-1 .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+      transparent 0%, var(--gold) 30%, var(--accent) 60%, var(--gold) 80%, transparent 100%);
+    background-size: 200% auto;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* Left vertical accent line */
+  .slide-1 .left-line {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg,
+      transparent 0%, var(--gold) 30%, var(--accent) 70%, transparent 100%);
+    opacity: 0.6;
+  }
+
+  .slide-1 .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--pad) var(--pad) calc(var(--pad) - 8px);
+    z-index: 10;
+  }
+
+  /* Top row: status tag + page indicator */
+  .slide-1 .top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .live-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 8px 18px;
+    border-radius: 100px;
+  }
+  .live-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulseBlue 2.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  .live-tag span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+  }
+  .slide-indicator {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--white-45);
+  }
+
+  /* Geometric SVG decoration */
+  .slide-1 .geo-deco {
+    position: absolute;
+    top: 52px; right: 60px;
+    opacity: 0.09;
+    animation: rotateSlow 30s linear infinite;
+  }
+
+  /* Bottom content block */
+  .slide-1 .bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .uni-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(200,168,75,0.10);
+    border: 1px solid rgba(200,168,75,0.28);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 7px 18px;
+    border-radius: 100px;
+    margin-bottom: 26px;
+    width: fit-content;
+  }
+  .uni-badge span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+  }
+
+  .slide-1 h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 84px;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -3.5px;
+    color: var(--white);
+    margin-bottom: 26px;
+  }
+  .slide-1 h2 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-1 .tagline {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--white-70);
+    line-height: 1.65;
+    max-width: 460px;
+    margin-bottom: 36px;
+  }
+
+  /* Name + role strip */
+  .identity-strip {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 12px;
+    padding: 14px 22px;
+    width: fit-content;
+    gap: 16px;
+  }
+  .identity-strip .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+  .identity-strip .i-pipe {
+    width: 1px; height: 16px;
+    background: var(--white-20);
+    flex-shrink: 0;
+  }
+  .identity-strip .role {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ═══════════════════════════════════════════════
+     SLIDE 2 — MILESTONES (Dark Premium)
+  ═══════════════════════════════════════════════ */
+  .slide-2 { background: var(--navy); }
+
+  .slide-2 .bg-mesh {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 100% 0%, rgba(37,99,235,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 0% 100%, rgba(200,168,75,0.07) 0%, transparent 55%);
+  }
+
+  /* Subtle grid pattern */
+  .slide-2 .bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .slide-2 .top-stripe {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+  }
+
+  .slide-2 .content {
+    position: absolute;
+    inset: 0;
+    padding: var(--pad);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+  }
+
+  .slide-2 .label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .slide-2 h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -2px;
+    margin-bottom: 14px;
+  }
+  .slide-2 h2 span {
+    background: linear-gradient(135deg, var(--accent), #93C5FD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-2 .sub {
+    font-size: 16px;
+    color: var(--white-45);
+    line-height: 1.65;
+    max-width: 520px;
+    margin-bottom: 44px;
+    font-weight: 400;
+  }
+
+  /* 2×2 glass stat cards */
+  .stats-grid-v2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .stat-v2 {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .stat-v2:hover {
+    border-color: rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Colored top edge per card */
+  .stat-v2::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-color, var(--accent));
+    border-radius: 2px 2px 0 0;
+  }
+  .stat-v2.c-blue  { --card-color: var(--accent); }
+  .stat-v2.c-gold  { --card-color: var(--gold); }
+  .stat-v2.c-green { --card-color: #34D399; }
+  .stat-v2.c-purple{ --card-color: #A78BFA; }
+
+  .stat-v2-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  .stat-v2-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .stat-v2-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white-70);
+    line-height: 1.3;
+  }
+  .stat-v2-sub {
+    font-size: 11px;
+    color: var(--white-45);
+    font-weight: 400;
+  }
+
+  .slide-2 .footer-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--white-10);
+  }
+  .slide-2 .footer-strip .ft-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white-90);
+    letter-spacing: -0.3px;
+  }
+  .slide-2 .footer-strip .ft-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .footer-tag {
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     SLIDE 3 — LOCAS / PELTON AWARD
+  ═══════════════════════════════════════════════ */
+  .slide-3 { background: #060D18; }
+
+  /* Deep tech background: circuit-board feel */
+  .slide-3 .bg-circuit {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(91,155,248,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,155,248,0.045) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Atmospheric gradients */
+  .slide-3 .bg-atmos {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 55% 55% at 100% 50%, rgba(200,168,75,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(52,211,153,0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(37,99,235,0.10) 0%, transparent 60%);
+  }
+
+  /* Certificate photo: right 40% panel with glow */
+  .slide-3 .cert-panel {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 44%;
+    background: url('images/Pleton..jpeg') center 25% / cover no-repeat;
+    filter: brightness(0.45) saturate(0.6) sepia(0.1);
+  }
+  .slide-3 .cert-fade {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 52%;
+    background: linear-gradient(90deg,
+      #060D18 0%,
+      rgba(6,13,24,0.90) 30%,
+      rgba(6,13,24,0.40) 65%,
+      rgba(6,13,24,0.10) 100%);
+  }
+
+  /* Gold glow around cert area */
+  .slide-3 .cert-glow {
+    position: absolute;
+    right: 80px; top: 50%;
+    transform: translateY(-50%);
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,168,75,0.15) 0%, transparent 65%);
+    animation: glowPulse 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .slide-3 .content {
+    position: absolute;
+    inset: 0;
+    padding: var(--pad);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 62%;
+    z-index: 10;
+  }
+
+  /* Prestigious award badge */
+  .award-badge-v2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, rgba(200,168,75,0.18), rgba(200,168,75,0.08));
+    border: 1px solid rgba(200,168,75,0.38);
+    padding: 10px 22px;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    width: fit-content;
+    animation: pulseGold 4s ease-in-out infinite;
+  }
+  .award-badge-v2 .trophy-icon { font-size: 16px; line-height: 1; }
+  .award-badge-v2 .badge-text {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-lt);
+  }
+
+  .slide-3 h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 62px;
+    font-weight: 700;
+    line-height: 0.97;
+    letter-spacing: -2px;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .slide-3 h2 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-3 .locas-desc {
+    font-size: 16px;
+    color: var(--white-70);
+    line-height: 1.70;
+    margin-bottom: 36px;
+    max-width: 440px;
+  }
+  .slide-3 .locas-desc strong {
+    color: var(--white-90);
+    font-weight: 600;
+  }
+
+  /* Tech tags */
+  .tag-row-v2 { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+  .tag-v2 {
+    padding: 7px 15px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: transform 0.2s;
+  }
+  .tag-v2:hover { transform: translateY(-2px); }
+  .tv-blue   { background: rgba(91,155,248,0.14); color: #93C5FD; border: 1px solid rgba(91,155,248,0.25); }
+  .tv-green  { background: rgba(52,211,153,0.12); color: #6EE7B7; border: 1px solid rgba(52,211,153,0.25); }
+  .tv-gold   { background: rgba(200,168,75,0.12);  color: var(--gold-lt); border: 1px solid var(--gold-border); }
+  .tv-purple { background: rgba(167,139,250,0.12); color: #C4B5FD; border: 1px solid rgba(167,139,250,0.25); }
+
+  /* Bottom metadata */
+  .slide-3 .slide-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    border-top: 1px solid var(--white-10);
+  }
+  .slide-3 .school-text {
+    font-size: 12px;
+    color: var(--white-45);
+    line-height: 1.5;
+  }
+  .slide-3 .school-text strong { color: var(--white-70); font-weight: 600; }
+  .slide-3 .award-date-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 13px;
+    border-radius: 100px;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-border);
+  }
+  .slide-3 .award-date-badge span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--gold-lt);
+    text-transform: uppercase;
+  }
+
+  /* ═══════════════════════════════════════════════
+     SLIDE 4 — UNSTUCK LABS (Futuristic)
+  ═══════════════════════════════════════════════ */
+  .slide-4 { background: var(--navy); }
+
+  /* Robot/office image: cinematic treatment */
+  .slide-4 .photo-bg {
+    position: absolute;
+    inset: 0;
+    background: url('images/unstuck_labs.jfif') center center / cover no-repeat;
+    filter: brightness(0.22) saturate(0.5) hue-rotate(200deg);
+    transform-origin: center;
+    transition: transform 10s ease;
+  }
+  .slide-4:hover .photo-bg { transform: scale(1.04); }
+
+  /* Duotone overlay: blue to navy */
+  .slide-4 .overlay-duo {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(6,13,26,0.92) 0%,
+      rgba(15,32,64,0.70) 50%,
+      rgba(37,99,235,0.20) 100%);
+    mix-blend-mode: multiply;
+  }
+  .slide-4 .overlay-base {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg,
+      rgba(6,13,26,0.88) 0%,
+      rgba(6,13,26,0.45) 50%,
+      rgba(6,13,26,0.80) 100%);
+  }
+
+  /* Futuristic scan lines */
+  .slide-4 .scan-lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(91,155,248,0.015) 3px,
+      rgba(91,155,248,0.015) 4px
+    );
+    pointer-events: none;
+  }
+
+  /* Horizontal accent glow line */
+  .slide-4 .h-glow {
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%, rgba(91,155,248,0.5) 30%, rgba(200,168,75,0.5) 70%, transparent 100%);
+    transform: translateY(-120px);
+    opacity: 0.4;
+  }
+
+  /* Bottom gradient for content readability */
+  .slide-4 .overlay-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 65%;
+    background: linear-gradient(0deg, rgba(6,13,26,0.98) 0%, transparent 100%);
+  }
+
+  .slide-4 .content {
+    position: absolute;
+    inset: 0;
+    padding: var(--pad);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 10;
+  }
+
+  /* Floating "company badge" top center */
+  .slide-4 .company-badge {
+    position: absolute;
+    top: var(--pad);
+    left: var(--pad);
+    right: var(--pad);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .company-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 10px 20px;
+    border-radius: 100px;
+  }
+  .company-label .co-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulseBlue 2s infinite;
+  }
+  .company-label span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .slide-indicator-sm {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--white-45);
+  }
+
+  .slide-4 .bottom-content { display: flex; flex-direction: column; gap: 0; }
+
+  .slide-4 .s-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .slide-4 h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 0.97;
+    letter-spacing: -2.5px;
+    color: var(--white);
+    margin-bottom: 30px;
+  }
+  .slide-4 h2 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #93C5FD, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass role card */
+  .role-card-v2 {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.13);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+    max-width: 560px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 24px;
+    align-items: center;
+  }
+  .rc-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    grid-column: 1;
+  }
+  .rc-company {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+    grid-column: 1;
+  }
+  .rc-badge {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--blue));
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .rc-desc {
+    font-size: 13px;
+    color: var(--white-45);
+    line-height: 1.55;
+    margin-top: 8px;
+    grid-column: 1 / 3;
+  }
+
+  /* Pillar chips */
+  .pillars-v2 { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pillar-v2 {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(91,155,248,0.12);
+    border: 1px solid rgba(91,155,248,0.22);
+    padding: 9px 16px;
+    border-radius: 10px;
+    transition: all 0.2s;
+  }
+  .pillar-v2:hover { background: rgba(91,155,248,0.20); transform: translateY(-2px); }
+  .pillar-v2 .picon { font-size: 13px; line-height: 1; }
+  .pillar-v2 span { font-size: 12px; font-weight: 600; color: #93C5FD; }
+
+  /* Bottom gradient bar */
+  .slide-4 .bot-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--accent), var(--gold), var(--accent), var(--blue));
+    background-size: 200% auto;
+    animation: shimmer 5s linear infinite;
+  }
+
+  /* ═══════════════════════════════════════════════
+     SLIDE 5 — CLOSING STATEMENT
+  ═══════════════════════════════════════════════ */
+  .slide-5 { background: #04080F; }
+
+  /* Stars: CSS box-shadow particle field */
+  .slide-5 .stars {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle 1px at 12% 18%, rgba(255,255,255,0.7) 0%, transparent 1px),
+      radial-gradient(circle 1px at 85% 12%, rgba(255,255,255,0.5) 0%, transparent 1px),
+      radial-gradient(circle 1px at 45% 8%, rgba(255,255,255,0.6) 0%, transparent 1px),
+      radial-gradient(circle 1px at 70% 25%, rgba(255,255,255,0.4) 0%, transparent 1px),
+      radial-gradient(circle 1px at 25% 35%, rgba(255,255,255,0.5) 0%, transparent 1px),
+      radial-gradient(circle 1px at 92% 45%, rgba(255,255,255,0.3) 0%, transparent 1px),
+      radial-gradient(circle 1px at 8% 55%, rgba(255,255,255,0.4) 0%, transparent 1px),
+      radial-gradient(circle 1px at 60% 68%, rgba(255,255,255,0.3) 0%, transparent 1px),
+      radial-gradient(circle 1px at 33% 75%, rgba(255,255,255,0.5) 0%, transparent 1px),
+      radial-gradient(circle 1px at 78% 82%, rgba(255,255,255,0.4) 0%, transparent 1px),
+      radial-gradient(circle 1px at 15% 88%, rgba(255,255,255,0.6) 0%, transparent 1px),
+      radial-gradient(circle 1px at 50% 92%, rgba(255,255,255,0.3) 0%, transparent 1px),
+      radial-gradient(circle 1.5px at 38% 45%, rgba(200,168,75,0.8) 0%, transparent 2px),
+      radial-gradient(circle 1.5px at 65% 30%, rgba(91,155,248,0.8) 0%, transparent 2px),
+      radial-gradient(circle 1px at 88% 70%, rgba(200,168,75,0.5) 0%, transparent 1px);
+  }
+
+  /* Cosmic gradient: deep navy → rich indigo → navy */
+  .slide-5 .cosmic {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 110%, rgba(37,99,235,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 20% 30%, rgba(91,155,248,0.10) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 30% at 85% 20%, rgba(200,168,75,0.10) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 60% at 50% 50%, rgba(15,32,64,0.80) 0%, transparent 80%);
+  }
+
+  /* Horizon glow: warm light at bottom center */
+  .slide-5 .horizon {
+    position: absolute;
+    bottom: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(91,155,248,0.20) 0%, transparent 65%);
+    animation: glowPulse 5s ease-in-out infinite;
+  }
+
+  .slide-5 .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px;
+    z-index: 10;
+  }
+
+  /* Top gold shimmer line */
+  .slide-5 .top-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--accent) 60%, var(--gold) 80%, transparent 100%);
+    background-size: 200% auto;
+    animation: shimmer 5s linear infinite;
+  }
+
+  .slide-5 .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .slide-5 .eyebrow::before,
+  .slide-5 .eyebrow::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  .slide-5 .eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+
+  .slide-5 h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 82px;
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -3px;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+  .slide-5 h2 em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--gold-lt) 0%, var(--gold) 50%, #F0D060 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .slide-5 .closing-sub {
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--white-45);
+    line-height: 1.65;
+    max-width: 520px;
+    margin-bottom: 60px;
+  }
+
+  /* CTA glass pills */
+  .cta-row-v2 { display: flex; gap: 14px; align-items: center; }
+  .cta-v2 {
+    padding: 15px 34px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    cursor: default;
+    transition: all 0.25s;
+  }
+  .cta-v2.primary {
+    background: linear-gradient(135deg, var(--blue-lt), var(--blue));
+    color: var(--white);
+    box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+  }
+  .cta-v2.primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,99,235,0.45); }
+  .cta-v2.ghost {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--white-70);
+  }
+  .cta-v2.ghost:hover { background: var(--white-10); color: var(--white); }
+
+  /* Bottom wordmark */
+  .slide-5 .wordmark {
+    position: absolute;
+    bottom: 44px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--white-20);
+    text-transform: uppercase;
+  }
+
+  /* ═══════════════════════════════════════════════
+     CAPTION SECTION
+  ═══════════════════════════════════════════════ */
+  .section-block {
+    width: var(--slide-sz);
+    background: #0A0F1A;
+    border-radius: 16px;
+    padding: 52px 60px;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .section-block-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+  .sbh-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .sbh-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .sbh-line { flex: 1; height: 1px; background: rgba(255,255,255,0.07); }
+
+  .caption-body {
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.80);
+    white-space: pre-line;
+  }
+  .caption-body strong { color: var(--white); font-weight: 700; }
+  .caption-body .hashtags {
+    display: block;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 2.1;
+  }
+
+  /* ═══════════════════════════════════════════════
+     DESIGN SYSTEM REFERENCE
+  ═══════════════════════════════════════════════ */
+  .design-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+  .design-block {}
+  .design-block h4 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white-45);
+    margin-bottom: 18px;
+  }
+  .swatch-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .sw {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .sw-color {
+    width: 48px; height: 48px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .sw-hex {
+    font-size: 9px;
+    color: var(--white-45);
+    letter-spacing: 0.5px;
+    font-family: monospace;
+  }
+  .design-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .design-list li {
+    font-size: 13px;
+    color: var(--white-70);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .design-list li::before {
+    content: '↗';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     FULLSCREEN PRESENTER MODE
+  ═══════════════════════════════════════════════ */
+  .presenter {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.96);
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+  .presenter.open { display: flex; }
+
+  .presenter-inner {
+    width: min(90vw, 90vh);
+    height: min(90vw, 90vh);
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+  }
+
+  .presenter-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .pnav-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white-90);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .pnav-btn:hover { background: rgba(255,255,255,0.14); }
+  .pnav-count {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white-70);
+    letter-spacing: 2px;
+    min-width: 60px;
+    text-align: center;
+  }
+  .presenter-close {
+    position: absolute;
+    top: 24px; right: 24px;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--white-70);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 10;
+    transition: all 0.2s;
+  }
+  .presenter-close:hover { background: rgba(255,255,255,0.14); color: var(--white); }
+
+  .presenter-hint {
+    font-size: 11px;
+    color: var(--white-20);
+    letter-spacing: 1.5px;
+  }
+
+  /* ─────────────────────────────────────────────
+     RESPONSIVE: scale slides down on narrow screens
+  ───────────────────────────────────────────── */
+  @media (max-width: 1160px) {
+    :root { --slide-sz: 90vw; --pad: 6vw; }
+    .slide-meta { width: 90vw; }
+    .section-block { width: 90vw; }
+    .slide-1 h2 { font-size: 10vw; }
+    .slide-2 h2 { font-size: 7vw; }
+    .slide-3 h2 { font-size: 7vw; }
+    .slide-4 h2 { font-size: 8.5vw; }
+    .slide-5 h2 { font-size: 9.5vw; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ── SVG shared defs ── -->
+<svg style="display:none" aria-hidden="true">
+  <defs>
+    <filter id="blur-sm"><feGaussianBlur stdDeviation="1.5"/></filter>
+  </defs>
+</svg>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <p class="page-eyebrow">LinkedIn Carousel · 2026</p>
+  <h1 class="page-title">Meshari Alanazi — Career Launch</h1>
+  <p class="page-sub">5 slides · 1080 × 1080px · Screenshot each slide individually</p>
+</div>
+
+<div class="carousel">
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 1 — CINEMATIC HERO
+  ══════════════════════════════════════════ -->
+  <div class="slide-group">
+    <div class="slide-meta">
+      <span class="s-num">Slide 01 / 05</span>
+      <div class="s-pipe"></div>
+      <span class="s-name">Cover · Cinematic Hero</span>
+      <button class="present-btn" onclick="openPresenter(0)">&#9654; Present</button>
+    </div>
+
+    <div class="slide slide-1 slide-animate" id="slide-0">
+      <div class="photo-bg"></div>
+      <div class="overlay-left"></div>
+      <div class="overlay-bottom"></div>
+      <div class="light-leak"></div>
+      <div class="atmos-glow"></div>
+      <div class="top-bar"></div>
+      <div class="left-line"></div>
+
+      <!-- Geometric decoration -->
+      <div class="geo-deco">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="46" stroke="white" stroke-width="1"/>
+          <circle cx="50" cy="50" r="32" stroke="white" stroke-width="0.5"/>
+          <circle cx="50" cy="50" r="16" stroke="white" stroke-width="0.5"/>
+          <line x1="4" y1="50" x2="96" y2="50" stroke="white" stroke-width="0.5"/>
+          <line x1="50" y1="4" x2="50" y2="96" stroke="white" stroke-width="0.5"/>
+          <line x1="17" y1="17" x2="83" y2="83" stroke="white" stroke-width="0.3"/>
+          <line x1="83" y1="17" x2="17" y2="83" stroke="white" stroke-width="0.3"/>
+        </svg>
+      </div>
+
+      <div class="content">
+        <!-- Top row -->
+        <div class="top-row anim-item">
+          <div class="live-tag">
+            <div class="live-dot"></div>
+            <span>New Chapter · 2026</span>
+          </div>
+          <span class="slide-indicator">01 / 05</span>
+        </div>
+
+        <!-- Bottom block -->
+        <div class="bottom">
+          <div class="uni-badge anim-item">
+            <span>George Washington University &nbsp;·&nbsp; Class of 2026</span>
+          </div>
+
+          <h2 class="anim-item">
+            Chapter<br/><em>One</em><br/>Starts<br/>Now.
+          </h2>
+
+          <p class="tagline anim-item">
+            B.S. Computer Science. Pelton Award Recipient.<br/>
+            Junior Product Specialist at Unstuck Labs.
+          </p>
+
+          <div class="identity-strip anim-item">
+            <span class="name">Meshari Alanazi</span>
+            <div class="i-pipe"></div>
+            <span class="role">Junior Product Specialist · Unstuck Labs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 2 — MILESTONES (Dark)
+  ══════════════════════════════════════════ -->
+  <div class="slide-group">
+    <div class="slide-meta">
+      <span class="s-num">Slide 02 / 05</span>
+      <div class="s-pipe"></div>
+      <span class="s-name">Journey &amp; Milestones</span>
+      <button class="present-btn" onclick="openPresenter(1)">&#9654; Present</button>
+    </div>
+
+    <div class="slide slide-2 slide-animate" id="slide-1">
+      <div class="bg-mesh"></div>
+      <div class="bg-grid"></div>
+      <div class="top-stripe"></div>
+
+      <div class="content">
+        <p class="label anim-item">The journey so far</p>
+
+        <h2 class="anim-item">Built to<br/><span>ship.</span></h2>
+
+        <p class="sub anim-item">
+          Four years of CS fundamentals, late-night builds, and senior design — converging into one defining moment.
+        </p>
+
+        <div class="stats-grid-v2 anim-item">
+          <div class="stat-v2 c-blue">
+            <div class="stat-v2-icon">🎓</div>
+            <div class="stat-v2-num">B.S.</div>
+            <div class="stat-v2-label">Computer Science</div>
+            <div class="stat-v2-sub">George Washington University · 2026</div>
+          </div>
+          <div class="stat-v2 c-gold">
+            <div class="stat-v2-icon">🏆</div>
+            <div class="stat-v2-num">3rd</div>
+            <div class="stat-v2-label">Pelton Senior Design Competition</div>
+            <div class="stat-v2-sub">GWU School of Engineering · May 2026</div>
+          </div>
+          <div class="stat-v2 c-green">
+            <div class="stat-v2-icon">🌱</div>
+            <div class="stat-v2-num">LoCAS</div>
+            <div class="stat-v2-label">AI Smart Greenhouse System</div>
+            <div class="stat-v2-sub">IoT · Edge Computing · Real-Time Analysis</div>
+          </div>
+          <div class="stat-v2 c-purple">
+            <div class="stat-v2-icon">🚀</div>
+            <div class="stat-v2-num">Day 1</div>
+            <div class="stat-v2-label">Junior Product Specialist</div>
+            <div class="stat-v2-sub">Unstuck Labs · Washington D.C.</div>
+          </div>
+        </div>
+
+        <div class="footer-strip anim-item">
+          <span class="ft-name">Meshari Alanazi</span>
+          <div class="ft-right">
+            <span class="footer-tag">GWU CS '26</span>
+            <span class="footer-tag">Unstuck Labs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 3 — LOCAS / PELTON
+  ══════════════════════════════════════════ -->
+  <div class="slide-group">
+    <div class="slide-meta">
+      <span class="s-num">Slide 03 / 05</span>
+      <div class="s-pipe"></div>
+      <span class="s-name">LoCAS · Pelton Award</span>
+      <button class="present-btn" onclick="openPresenter(2)">&#9654; Present</button>
+    </div>
+
+    <div class="slide slide-3 slide-animate" id="slide-2">
+      <div class="bg-circuit"></div>
+      <div class="bg-atmos"></div>
+      <div class="cert-panel"></div>
+      <div class="cert-fade"></div>
+      <div class="cert-glow"></div>
+
+      <div class="content">
+        <div class="award-badge-v2 anim-item">
+          <span class="trophy-icon">🏆</span>
+          <span class="badge-text">Pelton Senior Design · 3rd Place · May 2026</span>
+        </div>
+
+        <h2 class="anim-item">
+          Building<br/>for the<br/><em>future.</em>
+        </h2>
+
+        <p class="locas-desc anim-item">
+          Our team designed <strong>LoCAS</strong> — a <strong>Localized Collection and Analysis System</strong> for real-time smart greenhouse monitoring. AI-driven sensors, edge computing, and live data pipelines — recognized by GWU's School of Engineering &amp; Applied Science.
+        </p>
+
+        <div class="tag-row-v2 anim-item">
+          <span class="tag-v2 tv-blue">AI &amp; Machine Learning</span>
+          <span class="tag-v2 tv-green">Smart Agriculture</span>
+          <span class="tag-v2 tv-gold">IoT &amp; Edge Computing</span>
+          <span class="tag-v2 tv-purple">Real-Time Systems</span>
+        </div>
+
+        <div class="slide-footer anim-item">
+          <div class="school-text">
+            GWU <strong>School of Engineering &amp; Applied Science</strong><br/>
+            <span style="font-size:11px">Dean Jason M. Zara</span>
+          </div>
+          <div class="award-date-badge">
+            <span>May 13, 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 4 — UNSTUCK LABS
+  ══════════════════════════════════════════ -->
+  <div class="slide-group">
+    <div class="slide-meta">
+      <span class="s-num">Slide 04 / 05</span>
+      <div class="s-pipe"></div>
+      <span class="s-name">Joining Unstuck Labs</span>
+      <button class="present-btn" onclick="openPresenter(3)">&#9654; Present</button>
+    </div>
+
+    <div class="slide slide-4 slide-animate" id="slide-3">
+      <div class="photo-bg"></div>
+      <div class="overlay-duo"></div>
+      <div class="overlay-base"></div>
+      <div class="scan-lines"></div>
+      <div class="h-glow"></div>
+      <div class="overlay-bottom"></div>
+      <div class="bot-bar"></div>
+
+      <!-- Company badge top -->
+      <div class="company-badge">
+        <div class="company-label">
+          <div class="co-dot"></div>
+          <span>Unstuck Labs · Washington D.C.</span>
+        </div>
+        <span class="slide-indicator-sm">04 / 05</span>
+      </div>
+
+      <div class="content">
+        <div class="bottom-content">
+          <p class="s-label anim-item">What's next</p>
+
+          <h2 class="anim-item">
+            Joining<br/><em>Unstuck</em><br/>Labs.
+          </h2>
+
+          <div class="role-card-v2 anim-item">
+            <div class="rc-title">Junior Product Specialist</div>
+            <div class="rc-company">Unstuck Labs</div>
+            <div class="rc-badge">🤖</div>
+            <div class="rc-desc">
+              Working at the intersection of AI, product strategy, and startup execution — helping build tools that actually move people forward.
+            </div>
+          </div>
+
+          <div class="pillars-v2 anim-item">
+            <div class="pillar-v2">
+              <span class="picon">🧠</span>
+              <span>AI Products</span>
+            </div>
+            <div class="pillar-v2">
+              <span class="picon">📐</span>
+              <span>Product Strategy</span>
+            </div>
+            <div class="pillar-v2">
+              <span class="picon">⚡</span>
+              <span>Startup Execution</span>
+            </div>
+            <div class="pillar-v2">
+              <span class="picon">🔭</span>
+              <span>Innovation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 5 — CLOSING STATEMENT
+  ══════════════════════════════════════════ -->
+  <div class="slide-group">
+    <div class="slide-meta">
+      <span class="s-num">Slide 05 / 05</span>
+      <div class="s-pipe"></div>
+      <span class="s-name">Vision · Call to Connect</span>
+      <button class="present-btn" onclick="openPresenter(4)">&#9654; Present</button>
+    </div>
+
+    <div class="slide slide-5 slide-animate" id="slide-4">
+      <div class="stars"></div>
+      <div class="cosmic"></div>
+      <div class="horizon"></div>
+      <div class="top-line"></div>
+
+      <div class="content">
+        <p class="eyebrow anim-item">Looking Forward</p>
+
+        <h2 class="anim-item">
+          The best<br/>work is<br/><em>ahead.</em>
+        </h2>
+
+        <p class="closing-sub anim-item">
+          Open to conversations about AI, product, and building things that actually matter. If you're working on something ambitious, let's connect.
+        </p>
+
+        <div class="cta-row-v2 anim-item">
+          <div class="cta-v2 primary">Connect on LinkedIn</div>
+          <div class="cta-v2 ghost">Open to Opportunities</div>
+        </div>
+      </div>
+
+      <div class="wordmark">Meshari Alanazi &nbsp;·&nbsp; GWU CS '26 &nbsp;·&nbsp; Unstuck Labs</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       CAPTION
+  ══════════════════════════════════════════ -->
+  <div class="slide-group">
+    <div class="slide-meta">
+      <span class="s-num">Caption</span>
+      <div class="s-pipe"></div>
+      <span class="s-name">LinkedIn Post — Copy &amp; Paste Ready</span>
+    </div>
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sbh-dot"></div>
+        <span class="sbh-label">Post Caption</span>
+        <div class="sbh-line"></div>
+      </div>
+      <div class="caption-body"><strong>Three things happened this month. I want to be straight about all of them.</strong>
+
+I graduated from <strong>George Washington University</strong> with a B.S. in Computer Science. Four years. A lot of hard nights and harder questions. Genuinely proud.
+
+Before graduation, our team placed <strong>3rd in the Pelton Senior Design Competition</strong> at GWU's School of Engineering. We built <strong>LoCAS</strong> — an AI-powered, real-time monitoring system for smart greenhouses. It was the kind of project that reminded me why I chose CS: building things that solve real problems.
+
+Now I'm starting my first role as a <strong>Junior Product Specialist at Unstuck Labs</strong>. It's a startup, it moves fast, and it works at the intersection of AI and real human outcomes. That's exactly where I want to be.
+
+This isn't a highlight reel. It's the beginning of work I actually care about.
+
+To everyone who showed up for me along the way — you know who you are. And to anyone building at the edge of tech and impact — I'd love to connect. 🤝
+
+<span class="hashtags">#ComputerScience #GWU #GeorgeWashingtonUniversity #UnstuckLabs #AI #ProductManagement #Graduation #NewGrad #StartupLife #LoCAS #PeltonAward #SeniorDesign #TechCareer #Building #Innovation</span></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       DESIGN SYSTEM REFERENCE
+  ══════════════════════════════════════════ -->
+  <div class="slide-group">
+    <div class="slide-meta">
+      <span class="s-num">Reference</span>
+      <div class="s-pipe"></div>
+      <span class="s-name">Design System &amp; Export Guide</span>
+    </div>
+    <div class="section-block">
+      <div class="section-block-header">
+        <div class="sbh-dot" style="background:var(--gold)"></div>
+        <span class="sbh-label" style="color:var(--gold)">Design System</span>
+        <div class="sbh-line"></div>
+      </div>
+      <div class="design-grid">
+        <div class="design-block">
+          <h4>Color Palette</h4>
+          <div class="swatch-row">
+            <div class="sw"><div class="sw-color" style="background:#060D1A"></div><span class="sw-hex">#060D1A</span></div>
+            <div class="sw"><div class="sw-color" style="background:#0A1628"></div><span class="sw-hex">#0A1628</span></div>
+            <div class="sw"><div class="sw-color" style="background:#5B9BF8"></div><span class="sw-hex">#5B9BF8</span></div>
+            <div class="sw"><div class="sw-color" style="background:#2563EB"></div><span class="sw-hex">#2563EB</span></div>
+            <div class="sw"><div class="sw-color" style="background:#C8A84B"></div><span class="sw-hex">#C8A84B</span></div>
+            <div class="sw"><div class="sw-color" style="background:#E5C870"></div><span class="sw-hex">#E5C870</span></div>
+          </div>
+        </div>
+        <div class="design-block">
+          <h4>Typography</h4>
+          <ul class="design-list">
+            <li>Headlines: Space Grotesk 700 · −2 to −3.5px tracking</li>
+            <li>Body: Inter 400 · 1.65–1.9 line-height</li>
+            <li>Labels: Inter 700 · uppercase · 3–5px tracking</li>
+            <li>Slide 1/5 headline: 82–84px</li>
+            <li>Body copy: 16–19px</li>
+          </ul>
+        </div>
+        <div class="design-block">
+          <h4>Export for LinkedIn</h4>
+          <ul class="design-list">
+            <li>Use browser zoom 100% for pixel-perfect screenshots</li>
+            <li>Screenshot each slide: 1080 × 1080px</li>
+            <li>Or: File → Print → Save as PDF (for native carousel)</li>
+            <li>Upload PDF directly — LinkedIn converts to swipeable</li>
+            <li>Post caption separately in the text field</li>
+          </ul>
+        </div>
+        <div class="design-block">
+          <h4>Post Strategy</h4>
+          <ul class="design-list">
+            <li>PDF carousel gets ~3× more impressions than single image</li>
+            <li>Post between 8–10am or 12–1pm Tue–Thu for peak reach</li>
+            <li>First comment: tag GWU + Unstuck Labs pages</li>
+            <li>Slide 1 is your hook — make it stop the scroll</li>
+            <li>Press ▶ Present buttons above to preview full-screen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /carousel -->
+
+<!-- ══════════════════════════════════════════
+     FULLSCREEN PRESENTER
+══════════════════════════════════════════ -->
+<div class="presenter" id="presenter">
+  <button class="presenter-close" onclick="closePresenter()">✕</button>
+  <div class="presenter-inner" id="presenterInner"></div>
+  <div class="presenter-nav">
+    <div class="pnav-btn" onclick="stepPresenter(-1)">&#8592;</div>
+    <div class="pnav-count" id="presenterCount">1 / 5</div>
+    <div class="pnav-btn" onclick="stepPresenter(1)">&#8594;</div>
+  </div>
+  <p class="presenter-hint">← → keys to navigate &nbsp;·&nbsp; ESC to close</p>
+</div>
+
+<script>
+  // ── Intersection Observer: animate slides on scroll ──
+  const slides = document.querySelectorAll('.slide-animate');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+  slides.forEach(s => observer.observe(s));
+
+  // ── Presenter mode ──
+  const SLIDE_IDS = ['slide-0','slide-1','slide-2','slide-3','slide-4'];
+  let presenterIdx = 0;
+
+  function openPresenter(idx) {
+    presenterIdx = idx;
+    renderPresenter();
+    document.getElementById('presenter').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePresenter() {
+    document.getElementById('presenter').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function stepPresenter(dir) {
+    presenterIdx = (presenterIdx + dir + SLIDE_IDS.length) % SLIDE_IDS.length;
+    renderPresenter();
+  }
+  function renderPresenter() {
+    const src = document.getElementById(SLIDE_IDS[presenterIdx]);
+    const inner = document.getElementById('presenterInner');
+    const clone = src.cloneNode(true);
+    clone.style.width  = '100%';
+    clone.style.height = '100%';
+    clone.style.borderRadius = '0';
+    clone.removeAttribute('id');
+    // force visible so animations don't hide content
+    clone.classList.add('visible');
+    inner.innerHTML = '';
+    inner.appendChild(clone);
+    document.getElementById('presenterCount').textContent =
+      (presenterIdx + 1) + ' / ' + SLIDE_IDS.length;
+  }
+  document.addEventListener('keydown', e => {
+    const p = document.getElementById('presenter');
+    if (!p.classList.contains('open')) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') stepPresenter(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   stepPresenter(-1);
+    if (e.key === 'Escape') closePresenter();
+  });
+</script>
+</body>
+</html>
