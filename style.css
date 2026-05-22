@@ -1072,9 +1072,9 @@ body.rtl .section-heading h2::after {
 
 /* Pelton certificate: zoomed in on the certificate text */
 .award-img.img-pelton {
-  height: 260px;
+  height: 340px;
   object-fit: cover;
-  object-position: center 52%;
+  object-position: center 50%;
   padding: 0;
 }
 
