@@ -1070,12 +1070,12 @@ body.rtl .section-heading h2::after {
   transition: transform 0.4s ease;
 }
 
-/* Pelton certificate: contain so full cert is visible */
+/* Pelton certificate: zoomed in on the certificate text */
 .award-img.img-pelton {
-  height: 220px;
-  object-fit: contain;
-  object-position: center center;
-  padding: 12px;
+  height: 260px;
+  object-fit: cover;
+  object-position: center 52%;
+  padding: 0;
 }
 
 /* Pelton card: premium gold top-accent on hover */
