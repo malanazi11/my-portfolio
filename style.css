@@ -980,36 +980,17 @@ html[lang="ar"] .lang-toggle { letter-spacing: 0.14em; }
 
 .project__body p + p { margin-top: var(--s-12); }
 
-/* Text-only project card (client work: no images or branding) */
-.project__media--panel {
-  display: grid;
-  place-items: center;
-  background: var(--ink);
-  color: var(--on-ink);
-}
-
-.project__panel-icon {
-  display: grid;
-  place-items: center;
-  width: clamp(96px, 8vw + 40px, 136px);
-  aspect-ratio: 1;
-  border: 4px solid currentColor;
-  transition: transform var(--t-base) var(--ease);
-}
-
-.project__panel-icon .icon { width: 44%; height: 44%; stroke-width: 1.5; }
-
-.card:hover .project__panel-icon { transform: scale(1.05); }
-
+/* "Confidential · Client Project" badge over the client project photo */
 .project__panel-badge {
   position: absolute;
+  z-index: 1;
   top: var(--s-24);
   inset-inline-start: var(--s-24);
   display: inline-flex;
   align-items: center;
   min-height: 30px;
   padding: 4px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: var(--black);
   border-radius: var(--r-pill);
   font-size: var(--fs-xs);
   font-weight: 700;
@@ -1480,10 +1461,6 @@ html[lang="ar"] .project__panel-badge { font-size: 12px; }
   .tl-card__media { aspect-ratio: 16 / 9; min-height: 0; }
 
   .monogram { min-height: 0; aspect-ratio: 16 / 7; }
-
-  .project__media--panel { aspect-ratio: 16 / 10; }
-
-  .project__panel-icon { width: 80px; }
 
   .project__panel-badge { top: var(--s-16); inset-inline-start: var(--s-16); }
 

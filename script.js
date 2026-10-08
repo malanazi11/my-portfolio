@@ -421,6 +421,7 @@ const uiText = {
     openLinkedIn: "Open LinkedIn profile in a new tab",
     openGitHub: "Open GitHub profile in a new tab",
     albiladAlt: "Bank Albilad, Riyadh",
+    stcAlt: "stc logo",
     copied: "Copied!",
     copyFailed: "Couldn't copy. Please copy it manually.",
     close: "Close",
@@ -440,6 +441,7 @@ const uiText = {
     openLinkedIn: "فتح حساب لينكدإن في نافذة جديدة",
     openGitHub: "فتح حساب جيت هب في نافذة جديدة",
     albiladAlt: "بنك البلاد، الرياض",
+    stcAlt: "شعار stc",
     copied: "تم النسخ!",
     copyFailed: "تعذّر النسخ، يرجى النسخ يدويًا.",
     close: "إغلاق",
@@ -498,6 +500,7 @@ function applyLanguage(lang) {
     btn.setAttribute("title", t(btn.dataset.labelKey));
   });
   document.getElementById("albiladImg").alt = t("albiladAlt");
+  document.getElementById("stcImg").alt = t("stcAlt");
   document.querySelectorAll(".js-view-cert").forEach(el => { el.textContent = t("viewCert"); });
   document.querySelectorAll(".js-lightbox").forEach(btn => {
     const title = document.getElementById(btn.dataset.captionId);
