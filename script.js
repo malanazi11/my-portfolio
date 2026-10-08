@@ -1,7 +1,25 @@
-/* =====================
-   Language Toggle
-   ===================== */
-let isArabic = false;
+/* ==========================================================================
+   Content: translations (element id -> text). Arrays render as chip lists.
+   Strings are static and trusted, so they are set with innerHTML, which keeps
+   inline markup such as <strong> and <span> intact across language switches.
+   ========================================================================== */
+const RESUME = {
+  en: "files/Meshari_Naif_Resume_EN_2026.pdf",
+  ar: "files/Meshari_Naif_Resume_AR_2026.pdf"
+};
+
+// Client project copy is shared by the Career sub-block and the Projects card
+const CLIENT_PROJECT = {
+  en: {
+    text: "Part of the Innovation Support team delivering a new, modern notification platform for stc, built on a microservices architecture to send customer notifications at large scale across channels such as SMS, push notifications, email and WhatsApp. I work on the gateway service that receives, authorizes and routes notification requests.",
+    note: "Details limited due to client confidentiality."
+  },
+  ar: {
+    text: "ضمن فريق Innovation Support في تطوير منصة إشعارات حديثة لشركة stc، مبنية على معمارية الخدمات المصغّرة (Microservices) لإرسال إشعارات العملاء على نطاق واسع عبر قنوات متعددة مثل الرسائل النصية والإشعارات الفورية والبريد الإلكتروني وواتساب. أعمل على خدمة البوابة التي تستقبل طلبات الإشعارات وتتحقق من صلاحياتها وتوجّهها.",
+    note: "التفاصيل محدودة احترامًا لسرية العميل."
+  },
+  tech: ["Java", "Spring Boot", "Kafka", "Redis", "Microservices"]
+};
 
 const translations = {
   en: {
@@ -14,12 +32,13 @@ const translations = {
     navRecognition: "Recognition",
     navContact: "Contact",
 
-    heroLabel: "Computer Science Graduate",
+    heroLabel: "Software Engineer",
     heroTitle: `Hi, I'm <span>Meshari Naif</span>`,
     heroDescription:
-      "I graduated from George Washington University with a B.S. in Computer Science and I am now working as a Junior Product Specialist at Unstuck Labs. I care about software engineering, building practical products, and technology that makes a real difference.",
-    heroSubline:
-      "B.S. Computer Science, GWU · Junior Product Specialist at Unstuck Labs · Washington, DC",
+      "I graduated from George Washington University with a B.S. in Computer Science in May 2026, and I am now a Software Engineer at Innovation Support in Riyadh, starting October 2026. I care about software engineering, building practical products, and technology that makes a real difference.",
+    heroMeta1: "B.S. Computer Science, GWU",
+    heroMeta2: "Software Engineer at Innovation Support",
+    heroMeta3: "Riyadh, Saudi Arabia",
     viewProjectsBtn: "View Projects",
     resumeBtn: "Download Resume",
 
@@ -44,7 +63,7 @@ const translations = {
     educationHeading: "Academic Progress",
     mountDate: "2022 – 2024",
     mountTitle: "Mount St. Mary's University",
-    mountDegree: "<strong>Computer Science Major • Cyber Security Minor</strong>",
+    mountDegree: "Computer Science Major • Cyber Security Minor",
     mountText1:
       "At Mount St. Mary's, I built my technical foundation through coursework in computing, systems, and security. This was the beginning of my path in Computer Science and an important stage in my academic growth.",
     mountText2:
@@ -53,7 +72,7 @@ const translations = {
       "It was also a place where I grew personally, became more involved in events, and gained experiences that shaped the way I present myself as both a student and a future professional.",
     gwuDate: "2025 – May 2026",
     gwuTitle: "George Washington University",
-    gwuDegree: "<strong>B.S. in Computer Science</strong>",
+    gwuDegree: "B.S. in Computer Science",
     gwuText1:
       "After transferring to George Washington University, I completed my B.S. in Computer Science in May 2026. My coursework covered Software Engineering, Algorithms, Systems Programming, Linear Algebra, Database Systems, Machine Learning, Computer Game Design, and a two-semester Capstone Design Project.",
     gwuText2:
@@ -70,14 +89,58 @@ const translations = {
     gwuStartText:
       "This photo shows when I received my George Washington University student ID — the start of a new chapter that ended with graduation two years later.",
 
+    careerLabel: "Career",
+    careerHeading: "Professional Journey",
+
+    innovationDate: "October 2026 – Present",
+    innovationBadge: "Current Role",
+    innovationTitle: "Innovation Support",
+    innovationDegree: "Software Engineer",
+    innovationLoc: "Riyadh, Saudi Arabia",
+    innovationText1:
+      "I joined Innovation Support in Riyadh in October 2026 as a Software Engineer on the company's core development team, developing and maintaining internal software systems.",
+    innovationText2:
+      "I contribute to the full software development lifecycle, from requirements gathering through deployment and support, and collaborate with cross-functional teams to deliver reliable, scalable software solutions.",
+    innovationTech: ["Software Engineering", "Internal Systems", "Full SDLC", "Cross-functional Teams", "Riyadh"],
+    clientLabel: "Current Client Project",
+    clientTitle: "Enterprise Notification Platform — stc",
+    clientText: CLIENT_PROJECT.en.text,
+    clientTech: CLIENT_PROJECT.tech,
+    clientNote: CLIENT_PROJECT.en.note,
+
+    unstuckDate: "April 2026 – September 2026",
+    unstuckTitle: "Unstuck Labs",
+    unstuckDegree: "Junior Product Specialist",
+    unstuckLoc: "Washington, D.C.",
+    unstuckText1:
+      "Started my professional journey at Unstuck Labs as a Junior Product Specialist in April 2026, working in a startup-focused environment centered around innovation, product development, and emerging technologies.",
+    unstuckText2:
+      "Working within a small and focused team has given me hands-on experience in product thinking, feature development, and the kind of fast-paced collaboration that defines the startup environment. It is my first professional role in tech, and it has already pushed me to grow in meaningful ways.",
+    unstuckText3:
+      "My work there covered product development, business development, social media content, and client outreach, including driving product development and client outreach for Summon, an AI-powered website builder that helps small businesses launch their online presence in minutes, and leading business development efforts focused on the Saudi market.",
+    unstuckTech: ["Product Development", "Business Development", "Social Media Content", "Client Outreach", "AI", "Startup", "Team Collaboration", "Washington D.C."],
+
+    albiladDate: "November 2024 – January 2025",
+    albiladTitle: "Albilad Bank",
+    albiladDegree: "Security Application Developer Intern",
+    albiladLoc: "Riyadh, Saudi Arabia",
+    albiladText1:
+      "At Albilad Bank, I developed and tested security-focused internal applications within a regulated banking environment.",
+    albiladText2:
+      "I worked alongside senior engineers to identify vulnerabilities and implement secure coding practices across existing systems, and gained firsthand experience with enterprise software standards in a major Saudi financial institution.",
+    albiladTech: ["Application Security", "Secure Coding", "Vulnerability Assessment", "Banking", "Riyadh"],
+
     skillsLabel: "Skills",
     skillsHeading: "Technical Skills",
+    skillCatLang: "Languages",
+    skillCatTools: "Tools &amp; Platforms",
+    skillCatSecurity: "Security &amp; Data",
     skillJava: "Java",
     skillPython: "Python",
     skillJS: "JavaScript",
     skillHTML: "HTML / CSS",
-    skillGit: "Git & GitHub",
-    skillSecurity: "Security & Authentication",
+    skillGit: "Git &amp; GitHub",
+    skillSecurity: "Security &amp; Authentication",
     skillDB: "Databases (SQL)",
 
     projectsLabel: "Projects",
@@ -89,7 +152,7 @@ const translations = {
       "This project was especially meaningful because it was built as a team effort. I worked alongside Nate Dixon, Dylan O'Neill, and Thomas Schmidt, and the project gave me valuable experience in teamwork, communication, task organization, and contributing to a larger software system.",
     locasText3:
       "My contribution focused on improving the web experience, making the system easier to use, and helping organize how information is presented to users. This project helped me better understand real-world software development and building tools around practical needs.",
-    locasTech: "Web Development • UI Design • Sensor Data • Team Collaboration • GitHub",
+    locasTech: ["Web Development", "UI Design", "Sensor Data", "Team Collaboration", "GitHub"],
     bankTitle: "Secure Mobile Banking Application",
     bankText1:
       "This project focused on building a secure mobile banking application with strong attention to privacy, safe access, and user protection. It was designed around the idea that users must be able to trust the system they are using.",
@@ -97,46 +160,58 @@ const translations = {
       "I worked on security-related features such as two-factor authentication, encrypted user data, and backend communication through REST APIs. It gave me direct experience with how software security is applied in real systems, especially in financial technology.",
     bankText3:
       "This project reflects the area I am strongly interested in: building software that is both useful and secure. It strengthened my interest in backend development, secure design, and cybersecurity-focused work.",
-    bankTech: "Java • Firebase • REST APIs • Authentication • 2FA • Encryption",
-
-    careerLabel: "Career",
-    careerHeading: "Professional Journey",
-    unstuckDate: "April 2026 – Present",
-    unstuckTitle: "Unstuck Labs",
-    unstuckDegree: "<strong>Junior Product Specialist</strong>",
-    unstuckText1:
-      "Started my professional journey at Unstuck Labs as a Junior Product Specialist in April 2026, working in a startup-focused environment centered around innovation, product development, and emerging technologies.",
-    unstuckText2:
-      "Working within a small and focused team has given me hands-on experience in product thinking, feature development, and the kind of fast-paced collaboration that defines the startup environment. It is my first professional role in tech, and it has already pushed me to grow in meaningful ways.",
-    unstuckTech: "Product Development · AI · Startup · Team Collaboration · Washington D.C.",
+    bankTech: ["Java", "Firebase", "REST APIs", "Authentication", "2FA", "Encryption"],
+    stcBadge: "Confidential · Client Project",
+    stcTitle: "Enterprise Notification Platform (stc)",
+    stcText: CLIENT_PROJECT.en.text,
+    stcTech: CLIENT_PROJECT.tech,
+    stcNote: CLIENT_PROJECT.en.note,
 
     recognitionLabel: "Recognition",
-    recognitionHeading: "Awards & Achievements",
+    recognitionHeading: "Awards &amp; Achievements",
     peltonDate: "May 2026",
+    peltonBadge: "3rd Place",
     peltonTitle: "Pelton Senior Design Competition",
     peltonText1:
-      "Our team received 3rd place recognition at the Pelton Senior Design Competition hosted by the George Washington University School of Engineering & Applied Science for the LoCAS project — a localized AI and IoT monitoring system for smart greenhouses.",
+      "Our team received 3rd place recognition at the Pelton Senior Design Competition hosted by the George Washington University School of Engineering &amp; Applied Science for the LoCAS project — a localized AI and IoT monitoring system for smart greenhouses.",
     peltonText2:
       "The award was presented on May 13, 2026, by Dean Jason M. Zara. I built LoCAS alongside teammates Nate Dixon, Dylan O'Neill, and Thomas Schmidt as part of our senior capstone project.",
-    embassyDates: "2022 · 2023 · 2024 · 2025 · 2026",
+    embassyDates: "2022 · 2023 · 2024",
     recognitionTitle: "Embassy Recognition – Passport DC",
     recognitionText1:
-      "This recognition reflects my contribution to community and cultural events and my role in representing Saudi culture in a professional setting. During this experience, I had the honor of meeting Ambassador Reema bint Bandar Al Saud.",
+      "This recognition reflects my contribution to community and cultural events and my role in representing Saudi culture in a professional setting. During this experience, I had the honor of meeting <strong>Ambassador Reema bint Bandar Al Saud</strong>.",
     recognitionText2:
       "I attended and supported the event each year in 2022, 2023, and 2024, and those experiences helped me grow in communication, leadership, responsibility, and public engagement.",
 
     contactLabel: "Contact",
     contactHeading: "Get In Touch",
-    contactNameLabel: "Name:",
-    contactEmailLabel: "Email:",
-    contactUSLabel: "US Phone:",
-    contactSaudiLabel: "Saudi Phone:",
-    contactGitHubLabel: "GitHub:",
-    contactLinkedInLabel: "LinkedIn:",
-    contactLocationLabel: "Location:",
-    contactLocation: "Virginia / Washington, DC",
+    contactIntro: "Open to software engineering opportunities and collaborations. I usually reply within a day.",
+    emailMeBtn: "Email Me",
+    contactName: "Meshari Naif",
+    contactRole: "Software Engineer · Riyadh, Saudi Arabia",
+    contactEmailLabel: "Email",
+    contactPhone1Label: "Saudi Phone 1",
+    contactPhone2Label: "Saudi Phone 2",
+    contactGitHubLabel: "GitHub",
+    contactLinkedInLabel: "LinkedIn",
+    contactLocationLabel: "Location",
+    contactLocation: "Riyadh, Saudi Arabia",
+    contactResumeLabel: "Resume",
 
+    footerTagline: "Software Engineer · Riyadh, Saudi Arabia",
+    footerLinksTitle: "Quick Links",
+    footerResumeTitle: "Resume",
+    footStory: "My Story",
+    footEducation: "Education",
+    footCareer: "Career",
+    footSkills: "Skills",
+    footProjects: "Projects",
+    footRecognition: "Recognition",
+    footContact: "Contact",
+    footResumeEN: "English Resume (PDF)",
+    footResumeAR: "Arabic Resume (PDF)",
     footerText: "© 2026 Meshari Naif. All rights reserved.",
+    skipLink: "Skip to content",
     langToggle: "AR"
   },
 
@@ -150,12 +225,13 @@ const translations = {
     navRecognition: "الإنجازات",
     navContact: "التواصل",
 
-    heroLabel: "خريج علوم حاسب",
+    heroLabel: "مهندس برمجيات",
     heroTitle: `مرحبًا، أنا <span>مشاري نايف</span>`,
     heroDescription:
-      "تخرجت من جامعة جورج واشنطن بدرجة البكالوريوس في علوم الحاسب، وأعمل الآن كمتخصص منتجات مبتدئ في Unstuck Labs. أهتم بهندسة البرمجيات، وبناء منتجات عملية، والتقنية التي تُحدث فرقًا حقيقيًا.",
-    heroSubline:
-      "بكالوريوس علوم حاسب، GWU · متخصص منتجات مبتدئ في Unstuck Labs · واشنطن العاصمة",
+      "تخرجت من جامعة جورج واشنطن بدرجة البكالوريوس في علوم الحاسب في مايو 2026، وأعمل الآن مهندس برمجيات في Innovation Support بالرياض منذ أكتوبر 2026. أهتم بهندسة البرمجيات، وبناء منتجات عملية، والتقنية التي تُحدث فرقًا حقيقيًا.",
+    heroMeta1: "بكالوريوس علوم حاسب، GWU",
+    heroMeta2: "مهندس برمجيات في Innovation Support",
+    heroMeta3: "الرياض، المملكة العربية السعودية",
     viewProjectsBtn: "عرض المشاريع",
     resumeBtn: "تحميل السيرة الذاتية",
 
@@ -180,7 +256,7 @@ const translations = {
     educationHeading: "التقدم الأكاديمي",
     mountDate: "2022 – 2024",
     mountTitle: "جامعة ماونت سانت ماري",
-    mountDegree: "<strong>تخصص علوم حاسب • تخصص فرعي أمن سيبراني</strong>",
+    mountDegree: "تخصص علوم حاسب • تخصص فرعي أمن سيبراني",
     mountText1:
       "في جامعة ماونت سانت ماري، بنيت أساسًا تقنيًا من خلال دراسة الحوسبة والأنظمة والأمن. وكانت هذه المرحلة بداية طريقي في علوم الحاسب ومرحلة مهمة في نموي الأكاديمي.",
     mountText2:
@@ -189,7 +265,7 @@ const translations = {
       "كما كانت أيضًا مرحلة تطورت فيها على المستوى الشخصي، وشاركت أكثر في الفعاليات، واكتسبت تجارب ساعدت في تشكيل شخصيتي كطالب ومهني مستقبلي.",
     gwuDate: "2025 – مايو 2026",
     gwuTitle: "جامعة جورج واشنطن",
-    gwuDegree: "<strong>بكالوريوس في علوم الحاسب</strong>",
+    gwuDegree: "بكالوريوس في علوم الحاسب",
     gwuText1:
       "بعد انتقالي إلى جامعة جورج واشنطن، أتممت درجة البكالوريوس في علوم الحاسب في مايو 2026. غطّت دراستي مجالات هندسة البرمجيات، والخوارزميات، وبرمجة الأنظمة، والجبر الخطي، وأنظمة قواعد البيانات، وتعلم الآلة، وتصميم الألعاب، ومشروع التخرج على مدار فصلين دراسيين.",
     gwuText2:
@@ -206,8 +282,52 @@ const translations = {
     gwuStartText:
       "تظهر هذه الصورة لحظة استلامي للبطاقة الجامعية في جامعة جورج واشنطن — بداية فصل جديد انتهى بالتخرج بعد عامين.",
 
+    careerLabel: "المسيرة المهنية",
+    careerHeading: "رحلتي المهنية",
+
+    innovationDate: "أكتوبر 2026 – حتى الآن",
+    innovationBadge: "الدور الحالي",
+    innovationTitle: "Innovation Support",
+    innovationDegree: "مهندس برمجيات",
+    innovationLoc: "الرياض، المملكة العربية السعودية",
+    innovationText1:
+      "انضممت إلى Innovation Support في الرياض في أكتوبر 2026 بوصفي مهندس برمجيات ضمن فريق التطوير الأساسي في الشركة، حيث أعمل على تطوير وصيانة الأنظمة البرمجية الداخلية.",
+    innovationText2:
+      "أساهم في دورة تطوير البرمجيات الكاملة من جمع المتطلبات وحتى النشر والدعم، وأتعاون مع فرق متعددة التخصصات لتقديم حلول برمجية موثوقة وقابلة للتوسع.",
+    innovationTech: ["هندسة البرمجيات", "الأنظمة الداخلية", "دورة التطوير الكاملة", "فرق متعددة التخصصات", "الرياض"],
+    clientLabel: "مشروع العميل الحالي",
+    clientTitle: "منصة الإشعارات المؤسسية — stc",
+    clientText: CLIENT_PROJECT.ar.text,
+    clientTech: CLIENT_PROJECT.tech,
+    clientNote: CLIENT_PROJECT.ar.note,
+
+    unstuckDate: "أبريل 2026 – سبتمبر 2026",
+    unstuckTitle: "Unstuck Labs",
+    unstuckDegree: "متخصص منتجات مبتدئ",
+    unstuckLoc: "واشنطن العاصمة",
+    unstuckText1:
+      "بدأت مسيرتي المهنية في Unstuck Labs بوصفي متخصصًا مبتدئًا في المنتجات في أبريل 2026، أعمل في بيئة شركة ناشئة تتمحور حول الابتكار وتطوير المنتجات والتقنيات الناشئة.",
+    unstuckText2:
+      "العمل ضمن فريق صغير ومركّز منحني خبرة عملية في التفكير المنتجي وتطوير الميزات والتعاون السريع الوتيرة الذي يميّز بيئة الشركات الناشئة. هذا هو دوري المهني الأول في مجال التقنية، وقد دفعني بالفعل للنمو بطرق ذات معنى حقيقي.",
+    unstuckText3:
+      "شمل عملي هناك تطوير المنتجات، وتطوير الأعمال، ومحتوى التواصل الاجتماعي، والتواصل مع العملاء، ومن ذلك قيادة تطوير المنتج والتواصل مع العملاء لمنصة Summon، وهي أداة تعتمد على الذكاء الاصطناعي لمساعدة الشركات الصغيرة على إطلاق حضورها الرقمي في دقائق، وقيادة جهود تطوير الأعمال الموجهة نحو السوق السعودية.",
+    unstuckTech: ["تطوير المنتجات", "تطوير الأعمال", "محتوى التواصل الاجتماعي", "التواصل مع العملاء", "الذكاء الاصطناعي", "الشركات الناشئة", "العمل الجماعي", "واشنطن العاصمة"],
+
+    albiladDate: "نوفمبر 2024 – يناير 2025",
+    albiladTitle: "بنك البلاد",
+    albiladDegree: "متدرب مطور تطبيقات أمنية",
+    albiladLoc: "الرياض، المملكة العربية السعودية",
+    albiladText1:
+      "في بنك البلاد، طورت واختبرت تطبيقات داخلية تركز على الأمن ضمن بيئة مصرفية منظمة.",
+    albiladText2:
+      "عملت مع مهندسين متخصصين لتحديد الثغرات وتطبيق ممارسات البرمجة الآمنة على الأنظمة القائمة، واكتسبت خبرة مباشرة بمعايير البرمجيات المؤسسية في إحدى كبرى المؤسسات المالية السعودية.",
+    albiladTech: ["أمن التطبيقات", "البرمجة الآمنة", "تقييم الثغرات", "القطاع المصرفي", "الرياض"],
+
     skillsLabel: "المهارات",
     skillsHeading: "المهارات التقنية",
+    skillCatLang: "لغات البرمجة",
+    skillCatTools: "الأدوات والمنصات",
+    skillCatSecurity: "الأمن والبيانات",
     skillJava: "جافا",
     skillPython: "بايثون",
     skillJS: "جافاسكربت",
@@ -225,7 +345,7 @@ const translations = {
       "كان هذا المشروع مهمًا بالنسبة لي لأنه بُني كعمل جماعي. عملت مع نيت ديكسون، وديلان أونيل، وتوماس شميت، وقد منحني المشروع خبرة قيمة في العمل الجماعي، والتواصل، وتنظيم المهام، والمساهمة في نظام برمجي أكبر.",
     locasText3:
       "ركزت مساهمتي على تحسين تجربة الويب، وجعل النظام أسهل في الاستخدام، والمساعدة في تنظيم طريقة عرض المعلومات للمستخدمين. وقد ساعدني هذا المشروع على فهم تطوير البرمجيات الواقعي بشكل أفضل.",
-    locasTech: "تطوير ويب • تصميم واجهات • بيانات حساسات • عمل جماعي • GitHub",
+    locasTech: ["تطوير ويب", "تصميم واجهات", "بيانات حساسات", "عمل جماعي", "GitHub"],
     bankTitle: "تطبيق بنكي آمن للهواتف",
     bankText1:
       "ركز هذا المشروع على بناء تطبيق بنكي آمن للهواتف مع اهتمام كبير بالخصوصية والوصول الآمن وحماية المستخدم. وتم تصميمه على أساس أن المستخدم يجب أن يثق بالنظام الذي يستخدمه.",
@@ -233,131 +353,420 @@ const translations = {
       "عملت على خصائص أمنية مثل التحقق الثنائي، وتشفير بيانات المستخدم، والتواصل الخلفي عبر REST APIs. وقد منحتني هذه التجربة فهمًا مباشرًا لكيفية تطبيق الأمن البرمجي في الأنظمة الواقعية.",
     bankText3:
       "يعكس هذا المشروع المجال الذي أهتم به بشدة: بناء برمجيات مفيدة وآمنة في الوقت نفسه. كما عزز اهتمامي بالتطوير الخلفي والتصميم الآمن والعمل المرتبط بالأمن السيبراني.",
-    bankTech: "Java • Firebase • REST APIs • Authentication • 2FA • Encryption",
-
-    careerLabel: "المسيرة المهنية",
-    careerHeading: "رحلتي المهنية",
-    unstuckDate: "أبريل 2026 – حتى الآن",
-    unstuckTitle: "Unstuck Labs",
-    unstuckDegree: "<strong>متخصص منتجات مبتدئ</strong>",
-    unstuckText1:
-      "بدأت مسيرتي المهنية في Unstuck Labs بوصفي متخصصًا مبتدئًا في المنتجات في أبريل 2026، أعمل في بيئة شركة ناشئة تتمحور حول الابتكار وتطوير المنتجات والتقنيات الناشئة.",
-    unstuckText2:
-      "العمل ضمن فريق صغير ومركّز منحني خبرة عملية في التفكير المنتجي وتطوير الميزات والتعاون السريع الوتيرة الذي يميّز بيئة الشركات الناشئة. هذا هو دوري المهني الأول في مجال التقنية، وقد دفعني بالفعل للنمو بطرق ذات معنى حقيقي.",
-    unstuckTech: "تطوير المنتجات · الذكاء الاصطناعي · الشركات الناشئة · العمل الجماعي · واشنطن العاصمة",
+    bankTech: ["Java", "Firebase", "REST APIs", "Authentication", "2FA", "Encryption"],
+    stcBadge: "سري · مشروع عميل",
+    stcTitle: "منصة الإشعارات المؤسسية (stc)",
+    stcText: CLIENT_PROJECT.ar.text,
+    stcTech: CLIENT_PROJECT.tech,
+    stcNote: CLIENT_PROJECT.ar.note,
 
     recognitionLabel: "الإنجازات",
     recognitionHeading: "الجوائز والإنجازات",
     peltonDate: "مايو 2026",
+    peltonBadge: "المركز الثالث",
     peltonTitle: "مسابقة Pelton للتصميم الهندسي",
     peltonText1:
       "حصل فريقنا على المركز الثالث في مسابقة Pelton للتصميم الهندسي التي نظّمتها كلية الهندسة والعلوم التطبيقية في جامعة جورج واشنطن، عن مشروع LoCAS — نظام مراقبة ذكي موضعي للبيوت الزراعية يعتمد على الذكاء الاصطناعي وإنترنت الأشياء.",
     peltonText2:
       "قُدِّمت الجائزة في 13 مايو 2026 من قِبَل العميد جيسون م. زارا. بنيت LoCAS مع زملائي نيت ديكسون وديلان أونيل وتوماس شميت كجزء من مشروع التخرج.",
-    embassyDates: "2022 · 2023 · 2024 · 2025 · 2026",
+    embassyDates: "2022 · 2023 · 2024",
     recognitionTitle: "تكريم السفارة – Passport DC",
     recognitionText1:
-      "يعكس هذا التكريم مساهمتي في الفعاليات المجتمعية والثقافية ودوري في تمثيل الثقافة السعودية بشكل مهني. وخلال هذه التجربة، كان لي شرف لقاء سمو السفيرة ريما بنت بندر آل سعود.",
+      "يعكس هذا التكريم مساهمتي في الفعاليات المجتمعية والثقافية ودوري في تمثيل الثقافة السعودية بشكل مهني. وخلال هذه التجربة، كان لي شرف لقاء <strong>سمو السفيرة ريما بنت بندر آل سعود</strong>.",
     recognitionText2:
       "شاركت وحضرت هذا الحدث في الأعوام 2022 و2023 و2024، وقد ساعدتني هذه التجارب على التطور في التواصل والقيادة وتحمل المسؤولية والمشاركة المجتمعية.",
 
     contactLabel: "التواصل",
     contactHeading: "تواصل معي",
-    contactNameLabel: "الاسم:",
-    contactEmailLabel: "البريد الإلكتروني:",
-    contactUSLabel: "رقم أمريكا:",
-    contactSaudiLabel: "رقم السعودية:",
-    contactGitHubLabel: "جيت هب:",
-    contactLinkedInLabel: "لينكدإن:",
-    contactLocationLabel: "الموقع:",
-    contactLocation: "فرجينيا / واشنطن العاصمة",
+    contactIntro: "منفتح على فرص هندسة البرمجيات والتعاون. أرد عادةً خلال يوم واحد.",
+    emailMeBtn: "راسلني",
+    contactName: "مشاري نايف",
+    contactRole: "مهندس برمجيات · الرياض، المملكة العربية السعودية",
+    contactEmailLabel: "البريد الإلكتروني",
+    contactPhone1Label: "الجوال 1",
+    contactPhone2Label: "الجوال 2",
+    contactGitHubLabel: "جيت هب",
+    contactLinkedInLabel: "لينكدإن",
+    contactLocationLabel: "الموقع",
+    contactLocation: "الرياض، المملكة العربية السعودية",
+    contactResumeLabel: "السيرة الذاتية",
 
+    footerTagline: "مهندس برمجيات · الرياض، المملكة العربية السعودية",
+    footerLinksTitle: "روابط سريعة",
+    footerResumeTitle: "السيرة الذاتية",
+    footStory: "قصتي",
+    footEducation: "التعليم",
+    footCareer: "المسيرة المهنية",
+    footSkills: "المهارات",
+    footProjects: "المشاريع",
+    footRecognition: "الإنجازات",
+    footContact: "التواصل",
+    footResumeEN: "السيرة الذاتية بالإنجليزية (PDF)",
+    footResumeAR: "السيرة الذاتية بالعربية (PDF)",
     footerText: "© 2026 مشاري نايف. جميع الحقوق محفوظة.",
+    skipLink: "تخطَّ إلى المحتوى",
     langToggle: "EN"
   }
 };
 
-const ids = Object.keys(translations.en);
+/* UI strings used for attributes, toasts and dynamic labels */
+const uiText = {
+  en: {
+    langToggle: "Switch to Arabic",
+    menuOpen: "Open menu",
+    menuClose: "Close menu",
+    copyEmail: "Copy email",
+    copyPhone1: "Copy Saudi phone number 1",
+    copyPhone2: "Copy Saudi phone number 2",
+    openLinkedIn: "Open LinkedIn profile in a new tab",
+    openGitHub: "Open GitHub profile in a new tab",
+    albiladAlt: "Bank Albilad, Riyadh",
+    copied: "Copied!",
+    copyFailed: "Couldn't copy. Please copy it manually.",
+    close: "Close",
+    toTop: "Back to top",
+    viewCert: "View certificate",
+    resumeVersions: "Resume versions",
+    focusAreas: "Focus areas",
+    technologies: "Technologies"
+  },
+  ar: {
+    langToggle: "التبديل إلى الإنجليزية",
+    menuOpen: "فتح القائمة",
+    menuClose: "إغلاق القائمة",
+    copyEmail: "نسخ البريد الإلكتروني",
+    copyPhone1: "نسخ رقم الجوال 1",
+    copyPhone2: "نسخ رقم الجوال 2",
+    openLinkedIn: "فتح حساب لينكدإن في نافذة جديدة",
+    openGitHub: "فتح حساب جيت هب في نافذة جديدة",
+    albiladAlt: "بنك البلاد، الرياض",
+    copied: "تم النسخ!",
+    copyFailed: "تعذّر النسخ، يرجى النسخ يدويًا.",
+    close: "إغلاق",
+    toTop: "العودة إلى الأعلى",
+    viewCert: "عرض الشهادة",
+    resumeVersions: "نسخ السيرة الذاتية",
+    focusAreas: "مجالات التركيز",
+    technologies: "التقنيات"
+  }
+};
 
-document.getElementById("langToggle").addEventListener("click", () => {
-  isArabic = !isArabic;
-  const lang = isArabic ? "ar" : "en";
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  ids.forEach(id => {
+function currentLang() {
+  return document.documentElement.lang === "ar" ? "ar" : "en";
+}
+
+function t(key) {
+  return uiText[currentLang()][key];
+}
+
+/* ==========================================================================
+   Language toggle
+   ========================================================================== */
+function renderChips(el, items) {
+  el.innerHTML = items.map(item => `<li class="chip">${item}</li>`).join("");
+}
+
+function applyLanguage(lang) {
+  const root = document.documentElement;
+  root.lang = lang;
+  root.dir = lang === "ar" ? "rtl" : "ltr";
+
+  const strings = translations[lang];
+  Object.keys(strings).forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
-
-    if (
-      id.includes("Title") ||
-      id.includes("Degree") ||
-      id === "heroTitle"
-    ) {
-      el.innerHTML = translations[lang][id];
-    } else {
-      el.textContent = translations[lang][id];
-    }
+    const value = strings[id];
+    if (Array.isArray(value)) renderChips(el, value);
+    else el.innerHTML = value;
   });
 
-  if (lang === "ar") {
-    document.body.classList.add("rtl");
-    document.documentElement.lang = "ar";
-  } else {
-    document.body.classList.remove("rtl");
-    document.documentElement.lang = "en";
+  // Resume button follows the language; the EN/AR pills mark the current one
+  document.querySelectorAll(".js-resume-current").forEach(a => { a.href = RESUME[lang]; });
+  document.querySelectorAll(".resume-switch a").forEach(a => {
+    a.classList.toggle("is-current", a.getAttribute("lang") === lang);
+  });
+
+  // Attribute labels
+  document.getElementById("langToggle").setAttribute("aria-label", t("langToggle"));
+  document.getElementById("scrollTopBtn").setAttribute("aria-label", t("toTop"));
+  document.getElementById("lightboxClose").setAttribute("aria-label", t("close"));
+  document.getElementById("resumeSwitchLabel").textContent = t("resumeVersions");
+  document.querySelectorAll(".js-copy, .js-open").forEach(btn => {
+    btn.setAttribute("aria-label", t(btn.dataset.labelKey));
+    btn.setAttribute("title", t(btn.dataset.labelKey));
+  });
+  document.getElementById("albiladImg").alt = t("albiladAlt");
+  document.querySelectorAll(".js-view-cert").forEach(el => { el.textContent = t("viewCert"); });
+  document.querySelectorAll(".js-lightbox").forEach(btn => {
+    const title = document.getElementById(btn.dataset.captionId);
+    btn.setAttribute("aria-label", `${t("viewCert")}: ${title ? title.textContent : ""}`);
+  });
+  document.querySelectorAll('.chips[aria-label]').forEach(list => {
+    const isTech = ["locasTech", "bankTech", "clientTech", "stcTech"].includes(list.id);
+    list.setAttribute("aria-label", t(isTech ? "technologies" : "focusAreas"));
+  });
+
+  const menuBtn = document.getElementById("mobileMenuBtn");
+  const isOpen = menuBtn.getAttribute("aria-expanded") === "true";
+  menuBtn.setAttribute("aria-label", t(isOpen ? "menuClose" : "menuOpen"));
+}
+
+function initLanguageToggle() {
+  const toggle = document.getElementById("langToggle");
+
+  // The inline <head> script already set lang/dir from storage; sync the content
+  if (currentLang() === "ar") applyLanguage("ar");
+  else applyLanguage("en");
+
+  toggle.addEventListener("click", () => {
+    const next = currentLang() === "ar" ? "en" : "ar";
+    applyLanguage(next);
+    try { localStorage.setItem("lang", next); } catch (e) { /* storage unavailable */ }
+  });
+}
+
+/* ==========================================================================
+   Navigation: scrolled state + mobile menu
+   ========================================================================== */
+function initNav() {
+  const header = document.getElementById("siteHeader");
+  const menu = document.getElementById("navLinks");
+  const btn = document.getElementById("mobileMenuBtn");
+  const desktop = window.matchMedia("(min-width: 1180px)");
+
+  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  function setOpen(open, { restoreFocus = false } = {}) {
+    btn.setAttribute("aria-expanded", String(open));
+    btn.setAttribute("aria-label", t(open ? "menuClose" : "menuOpen"));
+    menu.classList.toggle("is-open", open);
+    header.classList.toggle("is-open", open);
+    document.body.classList.toggle("menu-open", open);
+    if (open) {
+      // Flush styles so the menu is visible (and focusable) before moving focus
+      const first = menu.querySelector("a");
+      void menu.offsetHeight;
+      if (first) first.focus({ preventScroll: true });
+    } else if (restoreFocus) {
+      btn.focus();
+    }
   }
 
-  // Close mobile menu on language switch
-  navLinks.classList.remove("open");
-  mobileMenuBtn.classList.remove("open");
-});
+  const isOpen = () => btn.getAttribute("aria-expanded") === "true";
 
-/* =====================
-   Mobile Menu
-   ===================== */
-const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-const navLinks = document.getElementById("navLinks");
+  btn.addEventListener("click", () => setOpen(!isOpen()));
 
-mobileMenuBtn.addEventListener("click", () => {
-  navLinks.classList.toggle("open");
-  mobileMenuBtn.classList.toggle("open");
-});
-
-// Close menu when a nav link is clicked
-navLinks.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    mobileMenuBtn.classList.remove("open");
+  menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => { if (isOpen()) setOpen(false); });
   });
-});
 
-/* =====================
-   Scroll Reveal
-   ===================== */
-const reveals = document.querySelectorAll(".reveal");
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      revealObserver.unobserve(entry.target);
-    }
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && isOpen()) setOpen(false, { restoreFocus: true });
   });
-}, { threshold: 0.08 });
 
-reveals.forEach(el => revealObserver.observe(el));
+  // Outside click: anything that isn't a menu link or the toggle button
+  document.addEventListener("click", e => {
+    if (!isOpen()) return;
+    if (btn.contains(e.target) || e.target.closest("#navLinks li")) return;
+    setOpen(false);
+  });
 
-/* =====================
-   Scroll-to-top
-   ===================== */
-const scrollTopBtn = document.getElementById("scrollTopBtn");
+  desktop.addEventListener("change", e => { if (e.matches && isOpen()) setOpen(false); });
+}
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 400) {
-    scrollTopBtn.classList.add("visible");
-  } else {
-    scrollTopBtn.classList.remove("visible");
+/* ==========================================================================
+   Active nav link based on the section in view
+   ========================================================================== */
+function initActiveLink() {
+  const links = Array.from(document.querySelectorAll(".nav__link"));
+  const byId = new Map(links.map(link => [link.getAttribute("href").slice(1), link]));
+  const sections = Array.from(byId.keys()).map(id => document.getElementById(id)).filter(Boolean);
+  if (!("IntersectionObserver" in window) || !sections.length) return;
+
+  const setActive = id => {
+    links.forEach(link => {
+      const active = link === byId.get(id);
+      link.classList.toggle("is-active", active);
+      if (active) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    });
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) setActive(entry.target.id); });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+
+  sections.forEach(section => observer.observe(section));
+}
+
+/* ==========================================================================
+   Scroll reveal (fade + slide, staggered per batch, runs once)
+   ========================================================================== */
+function initReveal() {
+  const items = document.querySelectorAll("[data-reveal]");
+  if (!("IntersectionObserver" in window) || prefersReducedMotion.matches) {
+    items.forEach(el => el.classList.add("is-visible"));
+    return;
   }
-}, { passive: true });
 
-scrollTopBtn.addEventListener("click", () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(entry => entry.isIntersecting);
+    visible.forEach((entry, i) => {
+      entry.target.style.setProperty("--rd", `${Math.min(i, 6) * 90}ms`);
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+      // Drop the delay once revealed so hover transitions aren't delayed
+      setTimeout(() => entry.target.style.removeProperty("--rd"), 1400);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+  items.forEach(el => observer.observe(el));
+}
+
+/* ==========================================================================
+   Scroll progress bar
+   ========================================================================== */
+function initProgressBar() {
+  const bar = document.getElementById("progressBar");
+  let ticking = false;
+
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+    bar.style.transform = `scaleX(${progress})`;
+    ticking = false;
+  };
+
+  update();
+  window.addEventListener("scroll", () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener("resize", update);
+}
+
+/* ==========================================================================
+   Back to top
+   ========================================================================== */
+function initBackToTop() {
+  const btn = document.getElementById("scrollTopBtn");
+  const onScroll = () => btn.classList.toggle("is-visible", window.scrollY > 600);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+    document.getElementById("home").focus({ preventScroll: true });
+  });
+}
+
+/* ==========================================================================
+   Certificate lightbox (Esc closes, focus trapped, focus restored)
+   ========================================================================== */
+function initLightbox() {
+  const box = document.getElementById("lightbox");
+  const img = document.getElementById("lightboxImg");
+  const caption = document.getElementById("lightboxCaption");
+  const closeBtn = document.getElementById("lightboxClose");
+  let lastTrigger = null;
+
+  function open(trigger) {
+    lastTrigger = trigger;
+    const thumb = trigger.querySelector("img");
+    const title = document.getElementById(trigger.dataset.captionId);
+    img.src = trigger.dataset.full;
+    img.alt = thumb ? thumb.alt : "";
+    caption.textContent = title ? title.textContent : "";
+    box.hidden = false;
+    document.body.classList.add("menu-open");
+    requestAnimationFrame(() => box.classList.add("is-open"));
+    closeBtn.focus();
+  }
+
+  function close() {
+    box.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
+    const finish = () => { box.hidden = true; img.src = ""; };
+    if (prefersReducedMotion.matches) finish();
+    else setTimeout(finish, 300);
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  document.querySelectorAll(".js-lightbox").forEach(trigger => {
+    trigger.addEventListener("click", () => open(trigger));
+  });
+
+  closeBtn.addEventListener("click", close);
+  box.addEventListener("click", e => { if (e.target === box || e.target.classList.contains("lightbox__figure")) close(); });
+
+  box.addEventListener("keydown", e => {
+    if (e.key === "Escape") { e.preventDefault(); close(); }
+    // Only one focusable control inside, so Tab stays on it
+    if (e.key === "Tab") { e.preventDefault(); closeBtn.focus(); }
+  });
+}
+
+/* ==========================================================================
+   Copy buttons + toast
+   ========================================================================== */
+let toastTimer;
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 1800);
+}
+
+function legacyCopy(text) {
+  const area = document.createElement("textarea");
+  area.value = text;
+  area.setAttribute("readonly", "");
+  area.style.position = "fixed";
+  area.style.opacity = "0";
+  document.body.appendChild(area);
+  area.select();
+  let ok = false;
+  try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+  document.body.removeChild(area);
+  return ok;
+}
+
+// Clipboard API first; fall back to execCommand if it's missing, refuses or stalls
+function copyText(text) {
+  const fallback = () => (legacyCopy(text) ? Promise.resolve() : Promise.reject(new Error("copy failed")));
+  if (!navigator.clipboard || !window.isSecureContext) return fallback();
+  const stall = new Promise((_, reject) => setTimeout(() => reject(new Error("timeout")), 800));
+  return Promise.race([navigator.clipboard.writeText(text), stall]).catch(fallback);
+}
+
+function initCopyButtons() {
+  document.querySelectorAll(".js-copy").forEach(btn => {
+    const use = btn.querySelector("use");
+    btn.addEventListener("click", () => {
+      copyText(btn.dataset.copy)
+        .then(() => {
+          showToast(t("copied"));
+          use.setAttribute("href", "#i-check");
+          setTimeout(() => use.setAttribute("href", "#i-copy"), 1800);
+        })
+        .catch(() => showToast(t("copyFailed")));
+    });
+  });
+}
+
+/* ==========================================================================
+   Boot
+   ========================================================================== */
+document.getElementById("home").setAttribute("tabindex", "-1");
+initLanguageToggle();
+initNav();
+initActiveLink();
+initReveal();
+initProgressBar();
+initBackToTop();
+initLightbox();
+initCopyButtons();
